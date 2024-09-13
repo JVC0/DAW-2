@@ -100,7 +100,7 @@ Para la entrega de esta y las sucesivas tareas/prácticas que hagamos durante el
 
 * Subir los cambios al repositorio remoto.
 
-![image](2024-09-13_15-53_3.png)
+![image](2024-09-13_15-58_3.png)
 
 
 #####  CONFIGURACIÓN Y USO SOCIAL DE  GITHUB _(1 PUNTO)_
