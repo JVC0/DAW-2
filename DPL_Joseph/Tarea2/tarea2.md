@@ -12,10 +12,12 @@ Se deben incluir todos los comandos que se usen durante el ejercicio, las explic
 
 
 * Crear una rama v0.2.
-git branch v0.2
+
+![image](./Screenshot%202024-09-16%20104919.png)
 
 * Posiciona tu carpeta de trabaja en esta rama.
-git checkout -b v0.2
+
+![image](./Screenshot%202024-09-16%20104745.png)
 
 ##### AÑADIR  EL FICHERO 2.txt  _(1 PUNTO)_
 
@@ -23,36 +25,34 @@ git checkout -b v0.2
 
 * Añadir un fichero 2.txt en la rama v0.2
 
-echo "Contenido del fichero 2.txt" > 2.txt
-git add 2.txt
-git commit -m "Añadir fichero 2.txt en la rama v0.2"
+![image](./Screenshot%202024-09-16%20105139.png)
 
 ##### CREAR UNA RAMA REMOTA v0.2 _(1 PUNTO)_
 
 
 * Subir los cambios al repositorio remoto.
-git push origin v0.2
+
+![image](./Screenshot%202024-09-16%20105311.png)
 
 ##### MERGE DIRECTO _(1 PUNTO)_
 
 
 
 * Posicionarse en la rama master.
-git checkout master
+
+![image](./Screenshot%202024-09-16%20105430.png)
 
 * Hacer un merge de la rama v0.2 en la rama master.
 
-git merge v0.2
-
+![image](./Screenshot%202024-09-16%20105551.png)
 
 ##### MERGE CON CONFLICTO _(1 PUNTO)_
 
 
 
 * En la rama master poner Hola  en el fichero 1.txt y hacer commit.
-echo "Hola" > 1.txt
-git add 1.txt
-git commit -m "Añadir Hola en 1.txt en la rama master"
+
+![image](./Screenshot%202024-09-16%20105711.png)
 
 * Posicionarse en la rama v0.2 y poner Adios en el fichero 1.txt y hacer commit.
 * Posicionarse de nuevo en la rama master y hacer un merge con la rama v0.2
