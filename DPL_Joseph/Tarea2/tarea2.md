@@ -56,12 +56,8 @@ Se deben incluir todos los comandos que se usen durante el ejercicio, las explic
 
 * Posicionarse en la rama v0.2 y poner Adios en el fichero 1.txt y hacer commit.
 * Posicionarse de nuevo en la rama master y hacer un merge con la rama v0.2
-git checkout v0.2
-echo "Adios" > 1.txt
-git add 1.txt
-git commit -m "Añadir Adios en 1.txt en la rama v0.2"
-git checkout master
-git merge v0.2
+
+![alt text](./Screenshot%202024-09-16%20110029.png)
 
 ##### LISTADO DE RAMAS _(1 PUNTO)_
 
@@ -69,8 +65,7 @@ git merge v0.2
 
 * Listar las ramas con merge y las ramas sin merge.
 
-git branch --merged
-git branch --no-merged
+![alt text](./Screenshot%202024-09-16%20110157.png)
 
 ##### ARREGLAR  CONFLICTO _(1 PUNTO)_
 
@@ -79,7 +74,7 @@ git branch --no-merged
 * Arreglar el conflicto anterior y hacer un commit. Explicar como lo has arreglado incluyendo capturas de pantalla.
 git add 1.txt
 git commit -m "Resolver conflicto en 1.txt"
-
+![imng](./Screenshot%202024-09-16%20110351.png)
 
 ##### BORRAR RAMA _(1 PUNTO)_
 
@@ -87,20 +82,20 @@ git commit -m "Resolver conflicto en 1.txt"
 
 * Crear un tag v0.2
 
-git tag v0.2
-git push origin v0.2
+
+![image](./Screenshot%202024-09-16%20110453.png)
 
 * Borrar la rama v0.2
-git branch -d v0.2
-git push origin --delete v0.2
 
+![alt text](./Screenshot%202024-09-16%20110530.png)
 
 ##### LISTADO DE CAMBIOS _(1 PUNTO)_
 
 
 
 * Listar los distintos commits con sus ramas y sus tags.
-git log --oneline --decorate --graph --all
+
+![alt text](image.png)
 
 ##### CREAR UNA ORGANIZACIÓN _(1 PUNTO)_
 
