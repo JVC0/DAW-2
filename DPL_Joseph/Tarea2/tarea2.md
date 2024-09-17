@@ -74,6 +74,7 @@ Se deben incluir todos los comandos que se usen durante el ejercicio, las explic
 * Arreglar el conflicto anterior y hacer un commit. Explicar como lo has arreglado incluyendo capturas de pantalla.
 git add 1.txt
 git commit -m "Resolver conflicto en 1.txt"
+
 ![imng](./Screenshot%202024-09-16%20110351.png)
 
 ##### BORRAR RAMA _(1 PUNTO)_
