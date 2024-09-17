@@ -113,16 +113,13 @@ git commit -m "Resolver conflicto en 1.txt"
 * Meter a [github.com/amarzar](http://github.com/amarzar) y a 2 de vuestros compañeros de clase en el equipo de** colaboradores**.
 
 
+
 ##### CREAR UN index.html
-
-
 
 * Crear un index.html que se pueda ver como página web en la organización.
 
 
 ##### CREAR PULL REQUESTS
-
-
 
 * Hacer 2 forks de 2 repositorios orgdpl-tunombredeusuariodegithub.github.io de 2 organizaciones de las que sean ni administradores ni colaboradores.
 * Crear una rama en cada fork.
@@ -133,6 +130,6 @@ git commit -m "Resolver conflicto en 1.txt"
 ##### GESTIONAR PULL REQUESTS
 
 
-
+![alt text](image-1.png)
 * Aceptar los pull request que lleguen a los repositorios de tu organización.
 
