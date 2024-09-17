@@ -16,3 +16,19 @@
 ![alt text](image-1.png)
 
 ![alt text](image-4.png)
+
+#### utilizo el comando cd /opt/lampp para moverme a la carpetay el comando sudo ./manager-linux-x64.run para abrir el panel de control xampp
+
+
+``` 
+cd /opt/lampp
+```
+![alt text](image-5.png)
+
+#### Para revisar que xampp estaba funcionando bien miro los servidores y los empiezo
+
+![alt text](image-6.png)
+
+#### Los xampp esta funcionado bien por eso los servidores empiensan rapido y esta activo
+
+![alt text](image-7.png)
