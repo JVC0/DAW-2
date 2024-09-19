@@ -131,6 +131,6 @@ git commit -m "Resolver conflicto en 1.txt"
 ##### GESTIONAR PULL REQUESTS
 
 
-![alt text](image-1.png)
+![alt text](image-2.png)
 * Aceptar los pull request que lleguen a los repositorios de tu organización.
 
