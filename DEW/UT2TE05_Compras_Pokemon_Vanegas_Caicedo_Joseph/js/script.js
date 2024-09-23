@@ -7,4 +7,12 @@ button.addEventListener("click",(e) => {
         //console.log(e)
         e.style.visibility = "visible";
     })
+    document.querySelectorAll("#btn_lista_deseo").forEach((e) => {
+        //console.log(e)
+        e.style.visibility = "visible";
+    })
+    document.querySelectorAll(".Lista_Pokemon").forEach((e) => {
+        //console.log(e)
+        e.style.visibility = "visible";
+    })
 });
