@@ -3,3 +3,5 @@
 ### Asignaturas
 
 [DPL](DPL_Joseph)
+[DOR](DOR)
+[DEW](DEW)
