@@ -11,8 +11,15 @@ button.addEventListener("click",(e) => {
         //console.log(e)
         e.style.visibility = "visible";
     })
-    document.querySelectorAll(".Lista_Pokemon").forEach((e) => {
+    let Lista_Pokemon =document.querySelector(".Lista_Pokemon");
         //console.log(e)
-        e.style.visibility = "visible";
-    })
+        Lista_Pokemon.style.visibility = "visible"
+
+        mostrarPokemon();
+    
 });
+
+function mostrarPokemon(){
+  document.querySelector(".cargandoDatos").style.visibility="visible";  
+};
+
