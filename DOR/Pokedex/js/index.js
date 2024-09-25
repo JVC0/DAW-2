@@ -64,14 +64,18 @@ const showPokedex = async () => {
         // Esta estructura HTML se añade dinámicamente al contenedor pokedex
         pokedex.innerHTML +=    `<div class="card">
                                     <img src="${pokemons[i].pkm_back}">
-                                    <img class="front" src="${pokemons[i].pkm_front}"><br>
+                                    <img src="${pokemons[i].pkm_sback}">
+                                    <img class="front" src="${pokemons[i].pkm_front}">
+                                    <img class="front" src="${pokemons[i].pkm_sfront}">
+                                    <br>
                                     ${pokemons[i].id}. ${pokemons[i].name}<br>
                                     <div class="types">
                                         ${tipo1} ${tipo2}
                                     </div>
                                     <div class="size">
-                                        Weight: ${pokemons[i].pkm_weight} Height: ${pokemons[i].pkm_height}
-                                    </div>
+                                    Weight :${pokemons[i].pkm_weight} Height: ${pokemons[i].pkm_height}
+                                    </di>
+
                                 </div>`
     }
 }
