@@ -1,0 +1,1 @@
+{"version":3,"sources":["css/index.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"css.967bad95.css","sourceRoot":"../src","sourcesContent":[".flex{\n    justify-content: center;\n}\n.item{\n    width: 200px;\n    height: 200px;\n    background-color: gray;\n}\n"]}
