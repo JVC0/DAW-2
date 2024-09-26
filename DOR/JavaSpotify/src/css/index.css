@@ -1,9 +1,48 @@
 .flex{
-    
-    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px
 }
-.item{
+.cover{
     width: 200px;
     height: 200px;
     background-color: gray;
+    background-size: cover;
+
 }
+
+.cv1{
+    background-image: url("../assets/images/cover1.jpeg");
+}
+.cv2{
+    background-image: url("../assets/images/cover2.jpg");
+}
+.cv3{
+    background-image: url("../assets/images/cover3.jpeg");
+}
+
+.disk{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    border-radius: 100px;
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+    
+}
+.disk2{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 100px;
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+    
+}
+@keyframes example {
+    from {right: 0px;}
+    to {right: 200px;}
+  }
