@@ -1,5 +1,6 @@
 .flex{
-    justify-content: center;
+    
+    margin-top: 10px;
 }
 .item{
     width: 200px;
