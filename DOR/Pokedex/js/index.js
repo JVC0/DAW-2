@@ -32,7 +32,7 @@ const startPokedex = async () => {
                 pushPokemon(pokemon);
                 //Guardamos el resultado en data y creamos una nueva instancia de Pokemon con los datos obtenidos
                 // almacenamos los resultados en el array
-               //console.log(pokemon);
+               // console.log(pokemon);
             });
     }
     // Una vez que todos los Pokemon se han añadido al array, llamamos a la función showPokedex
@@ -60,22 +60,88 @@ const showPokedex = async () => {
                 tipo2 = "";          
             aux++; 
         }
-        // Para cada Pokemon, se crea una tarjeta con imágenes (vista frontal y trasera), el nombre y los tipos
-        // Esta estructura HTML se añade dinámicamente al contenedor pokedex
-        pokedex.innerHTML +=    `<div class="card">
-                                    <img src="${pokemons[i].pkm_back}">
-                                    <img src="${pokemons[i].pkm_sback}">
-                                    <img class="front" src="${pokemons[i].pkm_front}">
-                                    <img class="front" src="${pokemons[i].pkm_sfront}">
-                                    <br>
-                                    ${pokemons[i].id}. ${pokemons[i].name}<br>
-                                    <div class="types">
-                                        ${tipo1} ${tipo2}
-                                    </div>
-                                    <div class="size">
-                                    Weight :${pokemons[i].pkm_weight} Height: ${pokemons[i].pkm_height}
-                                    </di>
+     function getColorByType(type) {
+    switch (type) {
+        case "fire":
+            return "#ff4422";
+        case "water":
+            return "#3399ff";
+        case "electric":
+            return "#ffcc33";
+        case "grass":
+            return "#77cc55";
+        case "ice":
+            return "#66ccff";
+        case "fighting":
+            return "#bb5544";
+        case "poison":
+            return "#aa5599";
+        case "ground":
+            return "#ddbb55";
+        case "flying":
+            return "#8899ff";
+        case "psychic":
+            return "#ff5599";
+        case "bug":
+            return "#aabb22";
+        case "rock":
+            return "#bbaa66";
+        case "ghost":
+            return "#6666bb";
+        case "dragon":
+            return "#7766ee";
+        case "dark":
+            return "#775544";
+        case "steel":
+            return "#aaaabb";
+        case "fairy":
+            return "#ee99ee";
+        default:
+            return "#aaaa99";
+    
+    }
+}
 
-                                </div>`
+
+function NoEmptyTypes(tipo) {
+    return tipo === "" ? "0" : "1";
+}
+
+function isSingleType(tipo1, tipo2) {
+    return tipo1 !== "" && tipo2 === "" || tipo1 === "" && tipo2 !== "";
+}
+
+const singleTypeClass = isSingleType(tipo1, tipo2) ? "single-type" : "";
+
+// Ejemplo de uso en tu código
+const tipo1Color = getColorByType(tipo1);
+const tipo2Color = getColorByType(tipo2);
+
+pokedex.innerHTML += `<div class="card">
+                        <div class="idname">
+                            ${pokemons[i].id}. ${pokemons[i].name}<br>
+                        </div>
+                        <br>
+                        <img src="${pokemons[i].pkm_back}">
+                        <img src="${pokemons[i].pkm_sback}">
+                        <img class="front" src="${pokemons[i].pkm_front}">
+                        <img class="front" src="${pokemons[i].pkm_sfront}">
+                        
+                        <br>
+                        
+                        <div class="type ${singleTypeClass}" style="background-color: ${tipo1Color};">
+                            ${tipo1}
+                        </div>
+                        <div class="type ${singleTypeClass}" style="background-color: ${tipo2Color}; opacity: ${NoEmptyTypes(tipo2)};">
+                            ${tipo2}
+                        </div>
+
+                        <div class="phy">
+                            <div class="size">
+                                height: ${pokemons[i].pkm_weight}
+                                weight: ${pokemons[i].pkm_height}
+                            </div>
+                        </div>
+                    </div>`
     }
 }
