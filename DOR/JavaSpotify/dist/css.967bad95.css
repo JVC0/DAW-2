@@ -1,0 +1,50 @@
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px
+}
+.cover{
+    width: 200px;
+    height: 200px;
+    background-color: gray;
+    background-size: cover;
+
+}
+
+.cv1{
+    background-image: url("/cover1.9e2af4d1.jpeg");
+}
+.cv2{
+    background-image: url("/cover2.4ee97fb8.jpg");
+}
+.cv3{
+    background-image: url("/cover3.62d30c8c.jpeg");
+}
+
+.disk{
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    border-radius: 100px;
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+    
+}
+.disk2{
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    border-radius: 100px;
+    animation-name: example;
+    animation-duration: 3s;  
+    animation-fill-mode: forwards;
+    
+}
+@keyframes example {
+    from {right: 0px;}
+    to {right: 200px;}
+  }
+
+/*# sourceMappingURL=/css.967bad95.css.map */
