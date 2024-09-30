@@ -4,10 +4,30 @@ const button = document.querySelector("button");
 var pokemons = [];
 button.addEventListener("click",(e) => {
     //alert("Me han pulsado");
-    document.querySelectorAll("#filtro").forEach((e) => {
+    
+    document.querySelectorAll("#filtrotipo").forEach((e) => {
         //console.log(e)
         e.style.visibility = "visible";
+        e.addEventListener("keypress", (t)=> {
+            const tp1 = Document.getElementById("filtrotipo");
+            pokemonsFiltered = pokemons.pkm_type.filter(tp1);
+            pokemonsFiltered.forEach((pk)=>{
+                console.log(pk)
+            });
+        })
     })
+    document.querySelectorAll("#filtrogen").forEach((e) => {
+        //console.log(e)
+        e.style.visibility = "visible";
+        
+    })
+    document.querySelectorAll("#filtropoder").forEach((e) => {
+        //console.log(e)
+        e.style.visibility = "visible";
+        
+    })    
+    
+
     document.querySelectorAll("#btn_lista_deseo").forEach((e) => {
         //console.log(e)
         e.style.visibility = "visible";
@@ -151,3 +171,4 @@ pokedex.innerHTML += `<div class="card">
                     </div>`
     }
 }
+
