@@ -10,17 +10,17 @@
 
 ![alt text](image-2.png)
 
-## Copia la carpeta del proyecto del banco a la carpeta en la que has clonado el repositorio.
-
 
 
 ## Haz un commit y push desde Visual Studio.
 
+![alt text](image-3.png)
 
-## Borrar del disco duro todo el código del banco 1
 
 
 ## Clona el proyecto del banco de github a local
 
+![alt text](image-4.png)
 
 ## Haz una modificación del código y subelo a GitHub
+
