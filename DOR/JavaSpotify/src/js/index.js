@@ -12,3 +12,4 @@ for(var key of Object.keys(songs)){
     aux++;
 }
 const player = new Player(map)
+

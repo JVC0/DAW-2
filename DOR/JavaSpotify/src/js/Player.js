@@ -5,8 +5,8 @@ export default class Player{
         Object.entries(map);
         let aux = 1;
         for (var[key,value] of Object.entries(map)){
-            
-            const song = new Song(key,value);
+            const cover = `.cv${aux}`
+            const song = new Song(key,value,cover);
             play_song(song);
             
             aux++;
