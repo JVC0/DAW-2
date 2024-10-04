@@ -59,8 +59,8 @@ const startPokedex = async () => {
 
       let showPokemon = false;
       for (let j = 0; j < pokemonPoder.length; j++) {
-        const pokemonPoder = pokemonPoder[j];
-        if (pokemonPoder.includes(filterValueP)) {
+        const pokemonPoderText = pokemonPoder[j].textContent;
+        if (pokemonPoderText.includes(filterValueP)) {
           showPokemon = true;
           break;
         }
