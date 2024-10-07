@@ -50,79 +50,43 @@ const startPokedex = async () => {
   const filterInputPeso = document.getElementById('filtropeso')
   const pokedex = document.getElementById("pokedex");
   const pokemonCards = pokedex.children;
+  
 
-  filterInputP.addEventListener('input', (e) => {
-    const filterValueP = e.target.value.toLowerCase();
-
-    for (let i = 0; i < pokemonCards.length; i++) {
-      const pokemonCard = pokemonCards[i];
-      const pokemonPoder = pokemonCard.querySelectorAll('.attack');
-
-      let showPokemon = false;
-      for (let j = 0; j < pokemonPoder.length; j++) {
-        const pokemonPoderText = pokemonPoder[j].textContent;
-        if (pokemonPoderText.includes(filterValueP)) {
-          showPokemon = true;
-          break;
-        }
-      }
-
-      if (showPokemon) {
-        pokemonCard.style.display = 'block';
-      } else {
-        pokemonCard.style.display = 'none';
-      }
-    }
-  });
-
-  filterInputPeso.addEventListener('input', (e) => {
-    const filterValuePeso = e.target.value.toLowerCase();
-
-    for (let i = 0; i < pokemonCards.length; i++) {
-      const pokemonCard = pokemonCards[i];
-      const pokemonPeso = pokemonCard.querySelectorAll('.weight');
-
-      let showPokemon = false;
-      for (let j = 0; j < pokemonPeso.length; j++) {
-        const pokemonPesoText = pokemonPeso[j].textContent;
-        if (pokemonPesoText.includes(filterValuePeso)) {
-          showPokemon = true;
-          break;
-        }
-      }
-
-      if (showPokemon) {
-        pokemonCard.style.display = 'block';
-      } else {
-        pokemonCard.style.display = 'none';
-      }
-    }
-  });
-
-  filterInput.addEventListener('input', (e) => {
-    const filterValue = e.target.value.toLowerCase();
-
-    for (let i = 0; i < pokemonCards.length; i++) {
-      const pokemonCard = pokemonCards[i];
-      const pokemonTypes = pokemonCard.querySelectorAll('.type');
-
-      let showPokemon = false;
-      for (let j = 0; j < pokemonTypes.length; j++) {
-        const pokemonType = pokemonTypes[j].textContent.toLowerCase();
-        if (pokemonType.includes(filterValue)) {
-          showPokemon = true;
-          break;
-        }
-      }
-
-      if (showPokemon) {
-        pokemonCard.style.display = 'block';
-      } else {
-        pokemonCard.style.display = 'none';
-      }
-    }
-  });
+  filterInputP.addEventListener('input', filterPokemons);
+  filterInput.addEventListener('input', filterPokemons);
+  filterInputPeso.addEventListener('input', filterPokemons);
+  
 };
+
+// Add the filterPokemons function
+function filterPokemons() {
+  const filterValuePoder = document.getElementById('filtropoder').value.toLowerCase();
+  const filterValueTipo = document.getElementById('filtrotipo').value.toLowerCase();
+  const filterValuePeso = document.getElementById('filtropeso').value.toLowerCase();
+  const pokemonCards = document.getElementById("pokedex").children;
+
+  for (let i = 0; i < pokemonCards.length; i++) {
+    const pokemonCard = pokemonCards[i];
+    let showPokemon = true;
+
+    // Check if the Pokémon card matches the filter values
+    if (filterValuePoder !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValuePoder)) {
+      showPokemon = false;
+    }
+    if (filterValueTipo !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValueTipo)) {
+      showPokemon = false;
+    }
+    if (filterValuePeso !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValuePeso)) {
+      showPokemon = false;
+    }
+
+    if (showPokemon) {
+      pokemonCard.style.display = 'block';
+    } else {
+      pokemonCard.style.display = 'none';
+    }
+  }
+}
 
 
 function pushPokemon(pokemon) {
@@ -146,14 +110,16 @@ const showPokedex = async (pokemons) => {
 
     const tipo1Color = getColorByType(tipo1);
     const tipo2Color = tipo2 ? getColorByType(tipo2) : "";
-
+    pokemons.pkm_price = ((5 + pokemons[i].pkm_attack * (20 - 5)) / 100).toFixed(2)
     const singleTypeClass = !tipo2 ? "single-type" : "";
 
     pokedex.innerHTML += `
       <div class="card">
         <div class="idname">
-          ${pokemons[i].id}. ${pokemons[i].name}<br>
+          ${pokemons[i].id}. ${pokemons[i].name} 
         </div>
+        <div class="type">${pokemons.pkm_price}€</div>
+        <br>
         <div class="attack">Attack ${pokemons[i].pkm_attack}</div>
         <br>
         <img src="${pokemons[i].pkm_back}">
