@@ -37,7 +37,9 @@
     display: inline-block;
     animation: resizePokemon 1s infinite;
 }
-
+.header{
+    text-align: center;
+}
 @keyframes resizePokemon {
     0% { transform: scale(1)}
     100% { transform: scale(1.2)}

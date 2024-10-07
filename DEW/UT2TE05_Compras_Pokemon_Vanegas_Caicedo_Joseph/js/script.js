@@ -8,7 +8,7 @@ button.addEventListener("click", (e) => {
     e.style.visibility = "visible";
   });
 
-  document.querySelectorAll("#filtrogen").forEach((e) => {
+  document.querySelectorAll("#filtropeso").forEach((e) => {
     e.style.visibility = "visible";
   });
 
@@ -46,12 +46,13 @@ const startPokedex = async () => {
   await showPokedex(pokemons);
   
   const filterInputP = document.getElementById('filtropoder');
+  const filterInput = document.getElementById('filtrotipo');
+  const filterInputPeso = document.getElementById('filtropeso')
+  const pokedex = document.getElementById("pokedex");
+  const pokemonCards = pokedex.children;
 
   filterInputP.addEventListener('input', (e) => {
     const filterValueP = e.target.value.toLowerCase();
-
-    const pokedex = document.getElementById("pokedex");
-    const pokemonCards = pokedex.children;
 
     for (let i = 0; i < pokemonCards.length; i++) {
       const pokemonCard = pokemonCards[i];
@@ -73,7 +74,30 @@ const startPokedex = async () => {
       }
     }
   });
-  const filterInput = document.getElementById('filtrotipo');
+
+  filterInputPeso.addEventListener('input', (e) => {
+    const filterValuePeso = e.target.value.toLowerCase();
+
+    for (let i = 0; i < pokemonCards.length; i++) {
+      const pokemonCard = pokemonCards[i];
+      const pokemonPeso = pokemonCard.querySelectorAll('.weight');
+
+      let showPokemon = false;
+      for (let j = 0; j < pokemonPeso.length; j++) {
+        const pokemonPesoText = pokemonPeso[j].textContent;
+        if (pokemonPesoText.includes(filterValuePeso)) {
+          showPokemon = true;
+          break;
+        }
+      }
+
+      if (showPokemon) {
+        pokemonCard.style.display = 'block';
+      } else {
+        pokemonCard.style.display = 'none';
+      }
+    }
+  });
 
   filterInput.addEventListener('input', (e) => {
     const filterValue = e.target.value.toLowerCase();
@@ -99,6 +123,7 @@ const startPokedex = async () => {
     }
   });
 };
+
 
 function pushPokemon(pokemon) {
   pokemons.push(pokemon);
@@ -144,8 +169,8 @@ const showPokedex = async (pokemons) => {
         </div>
         <div class="phy">
           <div class="size">
-            height: ${pokemons[i].pkm_weight}
-            weight: ${pokemons[i].pkm_height}
+             height: ${pokemons[i].pkm_weight}
+            <div class="weight">weight: ${pokemons[i].pkm_height}</div>
           </div>
         </div>
       </div>
