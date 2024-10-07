@@ -55,29 +55,45 @@ const startPokedex = async () => {
   filterInputP.addEventListener('input', filterPokemons);
   filterInput.addEventListener('input', filterPokemons);
   filterInputPeso.addEventListener('input', filterPokemons);
-  
 };
 
 // Add the filterPokemons function
-function filterPokemons() {
-  const filterValuePoder = document.getElementById('filtropoder').value.toLowerCase();
-  const filterValueTipo = document.getElementById('filtrotipo').value.toLowerCase();
-  const filterValuePeso = document.getElementById('filtropeso').value.toLowerCase();
+function filterPokemons(event) {
+  const filterValue = event.target.value.toLowerCase();
   const pokemonCards = document.getElementById("pokedex").children;
 
   for (let i = 0; i < pokemonCards.length; i++) {
     const pokemonCard = pokemonCards[i];
-    let showPokemon = true;
+    let showPokemon = false;
 
-    // Check if the Pokémon card matches the filter values
-    if (filterValuePoder !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValuePoder)) {
-      showPokemon = false;
-    }
-    if (filterValueTipo !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValueTipo)) {
-      showPokemon = false;
-    }
-    if (filterValuePeso !== '' && !pokemonCard.textContent.toLowerCase().includes(filterValuePeso)) {
-      showPokemon = false;
+    // Depending on the filter type, check the corresponding element
+    if (event.target.id === 'filtropoder') {
+      const pokemonPoder = pokemonCard.querySelectorAll('.attack');
+      for (let j = 0; j < pokemonPoder.length; j++) {
+        const pokemonPoderText = pokemonPoder[j].textContent;
+        if (pokemonPoderText.includes(filterValue)) {
+          showPokemon = true;
+          break;
+        }
+      }
+    } else if (event.target.id === 'filtrotipo') {
+      const pokemonTypes = pokemonCard.querySelectorAll('.type');
+      for (let j = 0; j < pokemonTypes.length; j++) {
+        const pokemonType = pokemonTypes[j].textContent.toLowerCase();
+        if (pokemonType.includes(filterValue)) {
+          showPokemon = true;
+          break;
+        }
+      }
+    } else if (event.target.id === 'filtropeso') {
+      const pokemonPeso = pokemonCard.querySelectorAll('.weight');
+      for (let j = 0; j < pokemonPeso.length; j++) {
+        const pokemonPesoText = pokemonPeso[j].textContent;
+        if (pokemonPesoText.includes(filterValue)) {
+          showPokemon = true;
+          break;
+        }
+      }
     }
 
     if (showPokemon) {
