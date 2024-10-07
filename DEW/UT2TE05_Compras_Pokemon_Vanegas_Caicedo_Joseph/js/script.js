@@ -19,21 +19,8 @@ button.addEventListener("click", (e) => {
   document.querySelectorAll("#btn_lista_deseo").forEach((e) => {
     e.style.visibility = "visible";
   });
-  
-  filterInputP.addEventListener('input', (e) => {
-    const filterValueP = e.target.value.toLowerCase();
-    filterPokemons(pokemonCards, filterValueP, filterInput.value.toLowerCase(), filterInputPeso.value.toLowerCase());
-  });
-  
-  filterInput.addEventListener('input', (e) => {
-    const filterValue = e.target.value.toLowerCase();
-    filterPokemons(pokemonCards, filterInputP.value.toLowerCase(), filterValue, filterInputPeso.value.toLowerCase());
-  });
-  
-  filterInputPeso.addEventListener('input', (e) => {
-    const filterValuePeso = e.target.value.toLowerCase();
-    filterPokemons(pokemonCards, filterInputP.value.toLowerCase(), filterInput.value.toLowerCase(), filterValuePeso);
-  });
+
+
   let Lista_Pokemon = document.querySelector(".Lista_Pokemon");
   Lista_Pokemon.style.visibility = "visible";
 
@@ -58,7 +45,20 @@ const startPokedex = async () => {
   }
 
   await showPokedex(pokemons);
+  filterInputP.addEventListener('input', (e) => {
+    const filterValueP = e.target.value.toLowerCase();
+    filterPokemons(pokemonCards, filterValueP, filterInput.value.toLowerCase(), filterInputPeso.value.toLowerCase());
+  });
   
+  filterInput.addEventListener('input', (e) => {
+    const filterValue = e.target.value.toLowerCase();
+    filterPokemons(pokemonCards, filterInputP.value.toLowerCase(), filterValue, filterInputPeso.value.toLowerCase());
+  });
+  
+  filterInputPeso.addEventListener('input', (e) => {
+    const filterValuePeso = e.target.value.toLowerCase();
+    filterPokemons(pokemonCards, filterInputP.value.toLowerCase(), filterInput.value.toLowerCase(), filterValuePeso);
+  });
   function filterPokemons(pokemonCards, filterValueP, filterValue, filterValuePeso) {
     for (let i = 0; i < pokemonCards.length; i++) {
       const pokemonCard = pokemonCards[i];
@@ -87,6 +87,8 @@ const startPokedex = async () => {
       }
     }
   }
+  };
+
 
 
 function pushPokemon(pokemon) {
