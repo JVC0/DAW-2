@@ -1,0 +1,30 @@
+.card {
+    font-family: DejaVu Sans Mono, monospace;
+    border: 2px solid rgb(78, 78, 78);
+    border-radius: 5px;
+    text-align: center;
+    float: left ;
+    width: 300px;
+    height: 650px;
+}
+.blurb{
+    display: none;
+}
+.Front_img{
+    width: 300px;
+    height: 580px;
+}
+.card:hover .Front_img{
+    display: none;
+    transform: rotateY(180deg);
+}
+
+.card:hover .blurb{
+    display: block;
+}
+.card:hover .Front_img{
+    display: none;
+}
+.blurb:hover{
+    display: block;
+}
