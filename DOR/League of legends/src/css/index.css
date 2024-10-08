@@ -1,30 +1,47 @@
 .card {
-    font-family: DejaVu Sans Mono, monospace;
-    border: 2px solid rgb(78, 78, 78);
     border-radius: 5px;
     text-align: center;
-    float: left ;
     width: 300px;
     height: 650px;
-}
-.blurb{
-    display: none;
-}
-.Front_img{
-    width: 300px;
-    height: 580px;
-}
-.card:hover .Front_img{
-    display: none;
+    perspective: 1000px;
+    display: inline-block;
+  }
+  
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden; /* added */
+  }
+  
+  .card:hover .flip-card-inner {
     transform: rotateY(180deg);
-}
-
-.card:hover .blurb{
-    display: block;
-}
-.card:hover .Front_img{
+  }
+  
+  .flip-card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #bbb;
+    color: black;
+    backface-visibility: hidden;
+  }
+  
+  .blurb {
+    position: absolute;
+    color: white;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+  }
+  
+  .flip-card:hover .blurb {
+    display: inline-block;
+  }
+  
+  .flip-card:hover .flip-card-front {
     display: none;
-}
-.blurb:hover{
-    display: block;
-}
+  }
