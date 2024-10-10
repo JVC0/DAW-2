@@ -1,13 +1,25 @@
 import Champion from './champions';
 var champions = [];
 
+document.addEventListener('DOMContentLoaded', function() {
+  const card = document.getElementById('championss');
+  card.addEventListener('click', function(event) {
+    flip(event);
+  });
+});
 
-
+function flip(event) {
+  var cards = document.querySelectorAll('.card-inner');
+  var cardInner = event.target.closest('.card-inner');
+  if (cardInner) {
+    cardInner.classList.toggle("is-flipped");
+  }
+}
 startChampions();
 
 
 async function startChampions (){
-        let data = await fetch("https://ddragon.leagueoflegends.com/cdn/13.18.1/data/es_ES/champion.json")
+        let data = await fetch("https://ddragon.leagueoflegends.com/cdn/14.20.1/data/es_ES/champion.json")
        .then(async(response)=>{return(await response.json()).data    })
             for(const key in data){
                 champions.push(new Champion(data[key]));
@@ -21,16 +33,19 @@ async function startChampions (){
     const showchampions = async () => {
         const championss = document.getElementById("championss");
         for (let champion of champions) {
-          championss.innerHTML += `<div class="card">
-                                      <div class="flip-card-inner">
-                                        <div class="flip-card-front">
+          championss.innerHTML += `<div class="champion_name"><h2>${champion.name}</h2>
+                                    <div class="card">
+                                      <div class="card-inner">
+                                        <div class="card-front">
                                           <img class="Front_img" src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg">
-                                          <h2>${champion.name}</h2>
+                                          
                                         </div>
-                                        <div class="flip-card-back">
-                                          <h1>${champion.blurb}</h1>
+                                        <div class="card-back">
+                                          <p>${champion.blurb}</p>
+                                          
                                         </div>
                                       </div>
-                                    </div>`
+                                      
+                                    </div></div>`
         }
       }
