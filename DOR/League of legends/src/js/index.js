@@ -1,5 +1,11 @@
 import Champion from './champions';
 var champions = [];
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+  document.querySelector('#button').style.visibility = 'hidden';
+  document.querySelector('#championss').style.visibility = 'visible';
+  startChampions();
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   const card = document.getElementById('championss');
@@ -15,7 +21,7 @@ function flip(event) {
     cardInner.classList.toggle("is-flipped");
   }
 }
-startChampions();
+
 
 
 async function startChampions (){
@@ -41,7 +47,7 @@ async function startChampions (){
                                           
                                         </div>
                                         <div class="card-back">
-                                          <p>${champion.blurb}</p>
+                                          <p class="blurb">${champion.blurb}</p>
                                           
                                         </div>
                                       </div>
