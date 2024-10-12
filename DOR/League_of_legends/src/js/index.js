@@ -92,10 +92,14 @@ async function startChampions (){
     
         championNameElement.addEventListener('click', async () => {
           if (preloadedImages.length === 0) { 
-            const loader = championElement.querySelector('.loader');
-            loader.style.visibility = 'visible';
-            preloadedImages = await preloadImages(champion);
-            loader.style.visibility = 'hidden';
+              const loader = championElement.querySelector('.loader');
+              const img = championElement.querySelector('.Front_img');
+              img.style.filter = 'blur(5px)';  
+              loader.style.visibility = 'visible';
+              preloadedImages = await preloadImages(champion);
+              loader.style.visibility = 'hidden';
+              img.style.filter = 'none';  // Remove the blur effect after the images are preloaded
+
           }
           currentSkinIndex = (currentSkinIndex + 1) % preloadedImages.length;
           frontImgElement.src = preloadedImages[currentSkinIndex].src; 

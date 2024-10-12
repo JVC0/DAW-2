@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel serve -d dist src/index.html",
-    "build": "parcel build -d build --public-url /LEAGUE_OF_LEGENDS/ src/index.html",
+    "build": "parcel build -d build --public-url /DAW-2/ src/index.html",
     "deploy": "gh-pages -d build"
   },
   "keywords": [],
