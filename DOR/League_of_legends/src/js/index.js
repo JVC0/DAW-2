@@ -74,6 +74,7 @@ async function startChampions (){
                                     <div class="card">
                                       <div class="card-inner">
                                         <div class="card-front">
+                                          <div class="loader"></div>
                                           <img class="Front_img" src="https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg">
                                         </div>
                                         <div class="card-back">
@@ -91,7 +92,10 @@ async function startChampions (){
     
         championNameElement.addEventListener('click', async () => {
           if (preloadedImages.length === 0) { 
-            preloadedImages = await preloadImages(champion); 
+            const loader = championElement.querySelector('.loader');
+            loader.style.visibility = 'visible';
+            preloadedImages = await preloadImages(champion);
+            loader.style.visibility = 'hidden';
           }
           currentSkinIndex = (currentSkinIndex + 1) % preloadedImages.length;
           frontImgElement.src = preloadedImages[currentSkinIndex].src; 
