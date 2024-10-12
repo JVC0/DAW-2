@@ -98,7 +98,7 @@ async function startChampions (){
               loader.style.visibility = 'visible';
               preloadedImages = await preloadImages(champion);
               loader.style.visibility = 'hidden';
-              img.style.filter = 'none';  // Remove the blur effect after the images are preloaded
+              img.style.filter = 'none';  
 
           }
           currentSkinIndex = (currentSkinIndex + 1) % preloadedImages.length;
