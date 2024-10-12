@@ -1,7 +1,7 @@
 {
   "name": "league_of_legends",
   "version": "1.0.0",
-  "main": "index.js",
+  
   "dependencies": {
     "abab": "^2.0.6",
     "abortcontroller-polyfill": "^1.7.5",
@@ -647,8 +647,11 @@
     "yallist": "^3.1.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "test": "cross-env echo \"Error: no test specified\" && exit 1",
+  "start": "cross-env parcel serve -d dist src/index.html",
+  "build": "cross-env parcel build --dist-dir build --public-url /league_of_legends/ src/index.html",
+  "deploy": "cross-env gh-pages -d build"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
