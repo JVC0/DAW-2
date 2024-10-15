@@ -23,10 +23,11 @@
     <h2>Eliminar Usuario</h2>
     <form action="delete.php" method="POST">
         id: <input type="text" name="id" required><br><br>
-        Nombre: <input type="text" name="name" required><br><br>
-        Email: <input type="email" name="email" required><br><br>
         <input type="submit" value="Eliminar Usuario">
     </form>
-
+    <form action="showtable.php">
+        <h4>Showtable</h4>
+        <input type="submit">
+    </form>
 </body>
 </html>

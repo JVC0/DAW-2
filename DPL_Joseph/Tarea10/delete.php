@@ -10,9 +10,9 @@ $sql = "DELETE FROM users WHERE id=$id";
 $result = mysqli_query($con, $sql);
 
 if ($result) {
-    echo "El usuario se ha registrado con éxito.";
+    echo "El usuario se ha eliminado con éxito.";
 } else {
-    echo "Error al insertar: " . mysqli_error($con);
+    echo "Error al eliminar: " . mysqli_error($con);
 }
 
 
