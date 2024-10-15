@@ -102,8 +102,8 @@ async function startChampions (){
               img.style.filter = 'none';  
               
               setTimeout(() => {
-                img.classList.remove('fade-out'); // Remove the fade-out class
-                img.classList.add('fade-in'); // Add the fade-in class to start the fade-in transition
+                img.classList.remove('fade-out');
+                img.classList.add('fade-in'); 
               }, 100);
 
           }
