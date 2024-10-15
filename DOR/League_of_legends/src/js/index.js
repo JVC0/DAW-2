@@ -96,9 +96,15 @@ async function startChampions (){
               const img = championElement.querySelector('.Front_img');
               img.style.filter = 'blur(5px)';  
               loader.style.visibility = 'visible';
+              img.classList.add('fade-out');
               preloadedImages = await preloadImages(champion);
               loader.style.visibility = 'hidden';
               img.style.filter = 'none';  
+              
+              setTimeout(() => {
+                img.classList.remove('fade-out'); // Remove the fade-out class
+                img.classList.add('fade-in'); // Add the fade-in class to start the fade-in transition
+              }, 100);
 
           }
           currentSkinIndex = (currentSkinIndex + 1) % preloadedImages.length;

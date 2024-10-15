@@ -25,6 +25,7 @@
     font-family: Beaufort for LOL;
     color: white ;
     -webkit-user-select: none;
+    user-select: none;
   }
   .logo{
     display: flex;
@@ -148,4 +149,17 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.Front_img {
+  transition: opacity 0.5s; 
+}
+
+.Front_img.fade-out {
+  opacity: 0;
+  transition: opacity 1.5s; 
+}
+
+.Front_img.fade-in {
+  opacity: 1;
+  transition: opacity 5s; 
 }
