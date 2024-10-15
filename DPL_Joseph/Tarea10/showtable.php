@@ -17,7 +17,7 @@ if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
 
         echo "
-        <div style='border: 1px solid #000; padding: 20px; margin: 10px; width: 200px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
+        <div style='border: 2px solid #000; padding: 20px; margin: 10px; width: 200px; box-shadow: 2px 2px 5px rgba(0,0,0,0.2);'>
             <h3>ID: {$row['id']}</h3>
             <p><strong>Nombre:</strong> {$row['name']}</p>
             <p><strong>Email:</strong> {$row['email']}</p>
