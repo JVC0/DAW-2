@@ -253,8 +253,7 @@ git checkout master
 git checkout -b bugfix
 
 ```
-#### Eliminar comentarios en CSS para habilitar los bordes punteados
-#### Buscar los comentarios //border en style.css y eliminarlos.
+
 
 #### Crear commit para habilitar los punteados en barra derecha y footer
 
