@@ -187,10 +187,7 @@
    git tag v1.0
    ```
 
-## Fin del proceso
 
-# Let's extend the previous markdown content by adding the new steps related to the "desarrollo" and "bugfix" branches.
-new_markdown_content = """
 ## Continuación: Gestión de ramas y tareas adicionales
 
 ### Rama "desarrollo"
