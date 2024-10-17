@@ -2,6 +2,9 @@ import Pokemon from './Pokemon.js';
 
 const button = document.querySelector("button");
 var pokemons = [];
+var desirelist =[]
+var selectedPokemons = [];
+
 
 button.addEventListener("click", (e) => {
   document.querySelectorAll("#filtrotipo").forEach((e) => {
@@ -19,6 +22,9 @@ button.addEventListener("click", (e) => {
   document.querySelectorAll("#btn_lista_deseo").forEach((e) => {
     e.style.visibility = "visible";
   });
+  document.querySelectorAll("#btn_alista_deseo").forEach((e) => {
+    e.style.visibility = "visible";
+  });
 
   let Lista_Pokemon = document.querySelector(".Lista_Pokemon");
   Lista_Pokemon.style.visibility = "visible";
@@ -29,6 +35,35 @@ button.addEventListener("click", (e) => {
 
   startPokedex();
 });
+
+const confirmButton = document.getElementById('btn_alista_deseo');
+
+confirmButton.addEventListener('click', () => {
+  if (selectedPokemons.length === 0) {
+    alert("No Pokémon selected. Please select at least one Pokémon.");
+    return;
+  }
+
+  const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your desire list?`;
+  
+  if (confirm(confirmMessage)) {
+    selectedPokemons.forEach(pokemonId => {
+      const pokemon = pokemons.find(p => p.id.toString() === pokemonId);
+      if (pokemon && !desirelist.includes(pokemon)) {
+        desirelist.push(pokemon);
+        const card = document.getElementById(pokemonId);
+        if (card) {
+          card.classList.remove('selected');
+        }
+      }
+    });
+    console.log(desirelist)
+    // Clear selection
+    selectedPokemons = [];
+  
+  }
+});
+
 
 const startPokedex = async () => {
   for (var i = 1; i <= 151; i++) {
@@ -130,7 +165,7 @@ const showPokedex = async (pokemons) => {
     const singleTypeClass = !tipo2 ? "single-type" : "";
 
     pokedex.innerHTML += `
-      <div class="card">
+      <div class="card" id="${pokemons[i].id}">
         <div class="idname">
           ${pokemons[i].id}. ${pokemons[i].name} 
         </div>
@@ -158,8 +193,25 @@ const showPokedex = async (pokemons) => {
       </div>
     `;
   }
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => togglePokemonSelection(card)); });
 };
+function togglePokemonSelection(card) {
+  const pokemonId = card.id;
+  const index = selectedPokemons.indexOf(pokemonId);
 
+  if (index === -1) {
+    // Pokemon is not in the list, add it
+    selectedPokemons.push(pokemonId);
+    card.classList.add('selected');
+  } else {
+    // Pokemon is in the list, remove it
+    selectedPokemons.splice(index, 1);
+    card.classList.remove('selected');
+  }
+
+  console.log('Selected Pokemons:', selectedPokemons);
+}
 // Función para obtener el color por tipo
 function getColorByType(type) {
     const colors = {
