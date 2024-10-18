@@ -51,16 +51,16 @@ confirmButton.addEventListener('click', () => {
       const pokemon = pokemons.find(p => p.id.toString() === pokemonId);
       if (pokemon && !desirelist.includes(pokemon)) {
         desirelist.push(pokemon);
-        const card = document.getElementById(pokemonId);
-        if (card) {
-          card.classList.remove('selected');
-        }
+      }
+      // Remove 'selected' class for all selected Pokémon
+      const card = document.getElementById(pokemonId);
+      if (card) {
+        card.classList.remove('selected');
       }
     });
-    console.log(desirelist)
+    console.log(desirelist);
     // Clear selection
     selectedPokemons = [];
-  
   }
 });
 
