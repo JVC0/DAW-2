@@ -13,12 +13,12 @@
    git init
    ```
 
-3. **Crear archivo `index.htm`**  
+3. **Crear archivo `index.html`**  
    ```bash
    touch index.htm
    ```
 
-4. **Añadir estructura básica de una web en `index.htm`**  
+4. **Añadir estructura básica de una web en `index.html`**  
    ```html
    <!DOCTYPE html>
    <html lang="es">
@@ -44,10 +44,10 @@
    <link rel="stylesheet" href="style.css">
    ```
 
-7. **Crear commit para añadir cabecera en `index.htm`**  
+7. **Crear commit para añadir cabecera en `index.html`**  
    ```bash
-   git add index.htm
-   git commit -m "Se añade la cabecera del index.htm"
+   git add index.html
+   git commit -m "Se añade la cabecera del index.html"
    ```
 
 8. **Añadir contenido al body**  
@@ -63,7 +63,7 @@
 
 9. **Crear commit para estructura básica del body**  
    ```bash
-   git add index.htm
+   git add index.html
    git commit -m "Se añade la estructura básica del body"
    ```
 
@@ -79,7 +79,7 @@
 
 11. **Crear commit para la estructura de la zona de posts**  
    ```bash
-   git add index.htm
+   git add index.html
    git commit -m "Se añade toda la estructura de la zona de posts"
    ```
 
@@ -226,12 +226,12 @@ git add css/style.css
 git commit -m "Se mueve la CSS a la carpeta css"
 
 ```
-#### Actualizar las referencias a CSS y logotipo en index.htm y style.css
-#### Cambiar la referencia de CSS en el archivo index.htm:
+#### Actualizar las referencias a CSS y logotipo en index.html y style.css
+#### Cambiar la referencia de CSS en el archivo index.html:
 
 
 
-```htmlñ
+```html
 <link rel="stylesheet" href="css/style.css">
 ```
 #### Cambiar la referencia al logotipo en style.css:
@@ -242,7 +242,7 @@ background-image: url('../images/logo.png');
 #### Crear commit para actualizar referencias a CSS e imágenes
 
 ```bash
-git add index.htm css/style.css
+git add index.html css/style.css
 git commit -m "Se actualizan las referencias a las CSS y al logotipo al reorganizar los directorios"
 Rama "bugfix"
 Crear rama bugfix a partir de master
@@ -263,7 +263,7 @@ git commit -m "Se habilitan los bordes punteados en la barra derecha y el footer
 ```
 
 #### Introducir como título "Galpón"
-#### Modificar el archivo index.htm para que el título sea:
+#### Modificar el archivo index.html para que el título sea:
 
 
 
@@ -274,12 +274,12 @@ git commit -m "Se habilitan los bordes punteados en la barra derecha y el footer
 #### Crear commit para añadir el título "Galpón"
 
 ```bash
-git add index.htm
+git add index.html
 git commit -m "Se introduce el título 'Galpón' en la página"
 ```
 
 #### Cambiar "2012" por "2014" en el footer y eliminar (c)
-#### Modificar el footer en index.htm de la siguiente manera:
+#### Modificar el footer en index.html de la siguiente manera:
 
 ```html
 <footer>
@@ -290,7 +290,7 @@ git commit -m "Se introduce el título 'Galpón' en la página"
 #### Crear commit para ajustes en el footer
 
 ```bash
-git add index.htm
+git add index.html
 git commit -m "Se realizan pequeños ajustes en el footer"
 ```
 
