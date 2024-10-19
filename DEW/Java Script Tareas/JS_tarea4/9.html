@@ -5,37 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-    .ring.selected{
-        background-color: yellow;
-    }
-</style>
 <body>
 <h1>    1.- El anillo único (DOM)
 Crea una página web con una lista de personajes de El Señor de los Anillos. Al hacer clic en el
 botón "Encontrar el Anillo", resalta el personaje de Frodo cambiando su color de fondo a amarillo.</h1>
-<ul>
-    <li>
-        Sauron
-    </li>
-    <li>
-        Gandalf
-    </li>
-    <li>
-        Elrond
-    </li>
-    <li class="ring">
-        Frodo
-    </li>
-    <button> Buscar anillo</button>
-</ul>
 </body>
 <script>
-const button = document.querySelector("button");
-button.addEventListener("click", () => {
-    const ring = document.querySelector('.ring');
-    ring.classList.add('selected');
-});
 
 
 </script>

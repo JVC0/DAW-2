@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .nazgul{
+            float: left;
+            width: 200px;
+        }
+        .img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<h2>Crea una lista de 9 elementos que representen a los Nazgûl. Al pasar el ratón sobre cada elemento, cambia el texto a "Nazgûl" y cambia su color de fondo a negro</h2>
+    <div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+        <div class="nazgul"><img class="img" src="https://cdn.awsli.com.br/2657/2657807/produto/238733495/tlotr__3_-removebg-preview-jj6bj7i2zu.png" alt=""></a></div>
+    </div>
+</body>
+<script>
+const nazgul = document.querySelectorAll(".nazgul");
+    nazgul.forEach(nazgul => {
+        nazgul.addEventListener("mouseover", () => {
+            nazgul.style.backgroundColor = 'black';
+            nazgul.style.color = 'white';
+            nazgul.innerHTML = 'NAZGUL';
+        })
+    })
+</script>
+</html>
