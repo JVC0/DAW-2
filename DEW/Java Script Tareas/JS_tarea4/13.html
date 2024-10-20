@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>\
+    <style>
+        .esconder{
+            width: 100px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Crea un botón que al hacer clic muestre o esconda una imagen de Batman en la página.</h1>
+    <img class="toggle" src="https://img.posterstore.com/zoom/wb0058-8batman-cartoon50x70.jpg?auto=compress%2Cformat&fit=max&w=3840" alt="">
+    <button class="esconder" >Esconder</button>
+</body>
+<script>
+ const image = document.querySelector('.toggle');
+        const button = document.querySelector('.esconder');
+
+        function toggle() {
+            if (image.style.visibility !== 'hidden') {
+                image.style.visibility = 'hidden'; 
+            } else {
+                image.style.visibility = 'visible'; 
+            }
+        }
+
+        button.addEventListener('click', toggle)
+</script>
+</html>

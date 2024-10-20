@@ -4,13 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #map-container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+        }
+        #map-image {
+            width: 100%;
+            height: 100%;
+        }
+        .kingdom {
+            position: absolute;
+            cursor: pointer;
+        }
+        #mordor { top: 70%; left: 80%; width: 15%; height: 20%; }
+        #rohan { top: 40%; left: 40%; width: 20%; height: 20%; }
+        #gondor { top: 60%; left: 50%; width: 20%; height: 20%; }
+    </style>
 </head>
 <body>
 <h1> Crea un mapa interactivo de la Tierra Media donde al hacer clic en un reino (Mordor, Rohan, 
     Gondor), aparezca una alerta mostrando el nombre del reino..</h1>
+
+    <div id="map-container">
+        <img id="map-image" src="https://i.etsystatic.com/7019867/r/il/6d6469/3499058736/il_794xN.3499058736_35q7.jpg" alt="Mapa de la Tierra Media">
+        <div id="mordor" class="kingdom" onclick="showKingdom('Mordor')"></div>
+        <div id="rohan" class="kingdom" onclick="showKingdom('Rohan')"></div>
+        <div id="gondor" class="kingdom" onclick="showKingdom('Gondor')"></div>
+    </div>
 </body>
 <script>
-
+function showKingdom(kingdom) {
+            alert("Has hecho clic en " + kingdom);
+        }
 
 </script>
 </html>

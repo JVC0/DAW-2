@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        
+        .bat {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<h1>    1.- El anillo único (DOM)
-Crea una página web con una lista de personajes de El Señor de los Anillos. Al hacer clic en el
-botón "Encontrar el Anillo", resalta el personaje de Frodo cambiando su color de fondo a amarillo.</h1>
+<h1>Crea un botón que al hacer clic cambie la imagen del fondo por una con la Batiseñal.</h1>
+<button class="bat" onclick="batsignal()">Llamar a batman</button>
 </body>
 <script>
+    const body = document.querySelector("body");
+    function batsignal() {
+        body.style.backgroundImage = 'url("https://www.wkmradio.com/wp-content/uploads/2019/03/batiseñal.jpg")';
+            body.style.backgroundSize = 'cover'; 
+        }
 
 
 </script>

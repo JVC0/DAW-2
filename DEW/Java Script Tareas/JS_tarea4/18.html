@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Crea una clase Villano con un atributo plan. Crea una instancia de Joker con un plan y crea un 
+        método que permita cambiar el plan.</h1>
+</body>
+<script>
+class Villano {
+  constructor(plan, nombre) {
+    this.nombre = nombre
+    this.plan = plan;
+  }
+
+  cambiarPlan(nuevoPlan) {
+    this.plan = nuevoPlan;
+  }
+
+  mostrarInformacion() {
+    console.log(`Nombre: ${this.nombre}`);
+    console.log(`Plan: ${this.plan}`);
+  }
+}
+
+prueba = new Villano('Robar el banco', 'Joker');
+console.log('Información inicial:');
+prueba.mostrarInformacion();
+prueba.cambiarPlan('Dominar la ciudad');
+console.log('\nInformación actualizada:');
+prueba.mostrarInformacion();
+</script>
+</html>

@@ -6,12 +6,38 @@
     <title>Document</title>
 </head>
 <body>
-<h1>    1.- El anillo único (DOM)
-Crea una página web con una lista de personajes de El Señor de los Anillos. Al hacer clic en el
-botón "Encontrar el Anillo", resalta el personaje de Frodo cambiando su color de fondo a amarillo.</h1>
+<h1> Crea una clase Superheroe con atributos como nombre, poder, y nivel. Crea una función 
+    que recorra una lista de superhéroes y devuelva el nombre del más poderoso.</h1>
+    <div id="resultado"></div>
 </body>
 <script>
+class Superheroe {
+    constructor(nombre, poder, nivel) {
+        this.nombre = nombre;
+        this.poder = poder;
+        this.nivel = nivel;
+    }
+}
+const superman = new Superheroe("Superman", 90, 10);
+const batman = new Superheroe("Batman", 70, 8);
+const wonderWoman = new Superheroe("Wonder Woman", 85, 9);
+const flash = new Superheroe("Flash", 80, 7);
 
+const listaSuperheroes = [superman, batman, wonderWoman, flash];
+
+function encontrarMasPoderoso(lista) {
+    let masPoderoso = lista[0];
+    for (let i = 1; i < lista.length; i++) {
+        if (lista[i].poder > masPoderoso.poder) {
+            masPoderoso = lista[i];
+        }
+    }
+    return masPoderoso.nombre;
+}
+
+const nombreMasPoderoso = encontrarMasPoderoso(listaSuperheroes);
+
+document.getElementById('resultado').innerHTML = `El superhéroe más poderoso es: ${nombreMasPoderoso}`;
 
 </script>
 </html>

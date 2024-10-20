@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crea una clase Gema con atributos como nombre y poder. Luego, crea una clase Thanos con 
+        un método recolectarGema() que permita añadir gemas a un array y calcule el poder total.</h1>
+</body>
+<script>
+    class Gema {
+    constructor(nombre, poder) {
+        this.nombre = nombre; 
+        this.poder = poder;  
+    }
+}
+class Thanos {
+    constructor() {
+        this.gemas = []; 
+    }
+    recolectarGema(gema) {
+        this.gemas.push(gema); 
+    }
+    calcularPoderTotal() {
+        return this.gemas.reduce((total, gema) => total + gema.poder, 0);
+    }
+}
+
+const gema1 = new Gema('Gema del Espacio', 10);
+const gema2 = new Gema('Gema del Tiempo', 15);
+const gema3 = new Gema('Gema de la Realidad', 20);
+
+const thanos = new Thanos();
+thanos.recolectarGema(gema1);
+thanos.recolectarGema(gema2);
+thanos.recolectarGema(gema3);
+
+
+const poderTotal = thanos.calcularPoderTotal();
+console.log(`El poder total de las gemas recolectadas es: ${poderTotal}`);
+</script>
+</html>

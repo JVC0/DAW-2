@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Crea dos clases Mago y Hechizo. Cada mago debe tener un hechizo asignado y al invocar el 
+        hechizo, el que tenga mayor poder gana el duelo.</h1>
+</body>
+<script>
+    class Hechizo {
+    constructor(nombre, poder) {
+        this.nombre = nombre; 
+        this.poder = poder;
+    }
+}
+class Mago {
+    constructor(nombre, hechizo) {
+        this.nombre = nombre; 
+        this.hechizo = hechizo; 
+    }
+
+    invocarHechizo() {
+        console.log(`${this.nombre} invoca el hechizo: ${this.hechizo.nombre} con poder ${this.hechizo.poder}`);
+        return this.hechizo.poder;
+    }
+}
+
+const hechizoFuego = new Hechizo("Fuego", 80);
+const hechizoHielo = new Hechizo("Hielo", 70);
+
+const mago1 = new Mago("Gandalf", hechizoFuego);
+const mago2 = new Mago("Saruman", hechizoHielo);
+
+
+function duelo(magoA, magoB) {
+    const poderMagoA = magoA.invocarHechizo();
+    const poderMagoB = magoB.invocarHechizo();
+
+    if (poderMagoA > poderMagoB) {
+        console.log(`${magoA.nombre} gana el duelo con el hechizo ${magoA.hechizo.nombre}!`);
+    } else if (poderMagoA < poderMagoB) {
+        console.log(`${magoB.nombre} gana el duelo con el hechizo ${magoB.hechizo.nombre}!`);
+    } else {
+        console.log("El duelo termina en empate.");
+    }
+}
+
+
+duelo(mago1, mago2);
+</script>
+</html>

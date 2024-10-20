@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 150px; /* Ajusta el tamaño de las imágenes */
+            margin: 10px;
+            cursor: pointer; /* Cambia el cursor al pasar sobre las imágenes */
+        }
+    </style>
+</head>
+<body>
+    <h1> Crea tres imágenes de anillos (uno de Sauron, uno de Gandalf y uno de Frodo). Al hacer clic en el 
+        anillo de Frodo, cambia el texto de la página a "Has elegido correctamente".</h1>
+        <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Unico_Anello.png" alt="Anillo de Sauron" onclick="mostrarMensaje('Sauron')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Unico_Anello.png" alt="Anillo de Gandalf" onclick="mostrarMensaje('Gandalf')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Unico_Anello.png" alt="Anillo de Frodo" onclick="mostrarMensaje('Frodo')">
+        </div>
+</body>
+<script>
+    function mostrarMensaje(eleccion) {
+        if (eleccion === 'Frodo') {
+            document.getElementById('titulo').innerText = "Has elegido correctamente";
+        } else {
+            alert("Has elegido el anillo de " + eleccion);
+        }
+    }
+</script>
+</html>

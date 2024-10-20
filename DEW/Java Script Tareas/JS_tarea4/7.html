@@ -6,12 +6,42 @@
     <title>Document</title>
 </head>
 <body>
-<h1>    1.- El anillo único (DOM)
-Crea una página web con una lista de personajes de El Señor de los Anillos. Al hacer clic en el
-botón "Encontrar el Anillo", resalta el personaje de Frodo cambiando su color de fondo a amarillo.</h1>
+<h1>Crea dos clases: Jedi y Sith. Cada clase debe tener atributos como nombre, nivelFuerza, y 
+    arma. Simula un combate entre un Jedi y un Sith, donde gana el que tenga mayor nivel de fuerza.</h1>
 </body>
 <script>
+class Jedi {
+    constructor(nombre, nivelFuerza, arma) {
+        this.nombre = nombre;
+        this.nivelFuerza = nivelFuerza;
+        this.arma = arma;
+    }
+}
+class Sith {
+    constructor(nombre, nivelFuerza, arma) {
+        this.nombre = nombre;
+        this.nivelFuerza = nivelFuerza;
+        this.arma = arma;
+    }
+}
 
+function combate(jedi, sith) {
+    if (jedi.nivelFuerza > sith.nivelFuerza) {
+        return `${jedi.nombre} (Jedi) gana el combate!`;
+    } else if (sith.nivelFuerza > jedi.nivelFuerza) {
+        return `${sith.nombre} (Sith) gana el combate!`;
+    } else {
+        return "El combate termina en empate!";
+    }
+}
+
+
+const luke = new Jedi("Luke Skywalker", 95, "Sable de luz azul");
+const vader = new Sith("Darth Vader", 90, "Sable de luz rojo");
+
+
+const resultado = combate(luke, vader);
+console.log(resultado);
 
 </script>
 </html>

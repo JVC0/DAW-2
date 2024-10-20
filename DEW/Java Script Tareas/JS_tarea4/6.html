@@ -4,13 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        img {
+            cursor: pointer;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
 <h1>    Crea una imagen de un sable láser apagado. Al hacer clic sobre el sable, éste se enciende mostrando 
     una imagen diferente.</h1>
+    <img id="sable" src="/DEW/Java Script Tareas/JS_tarea4/img/sable_apagado.png" alt="Sable Láser Apagado" />
 </body>
 <script>
+ const sable = document.getElementById('sable');
+        let encendido = false;
 
-
+        sable.addEventListener('click', () => {
+            if (encendido) {
+                sable.src = '/DEW/Java Script Tareas/JS_tarea4/img/sable_apagado.png'; 
+                encendido = false; 
+            } else {
+                sable.src = '/DEW/Java Script Tareas/JS_tarea4/img/sable_encendido.png'; 
+                encendido = true; 
+            }
+        });
 </script>
 </html>

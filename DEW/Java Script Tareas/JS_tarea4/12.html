@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>  Crea una lista desplegable con los nombres de diferentes superhéroes. Al seleccionar un superhéroe,
+        muestra su poder en un párrafo debajo.</h1>
+        <select id="superheroes">
+            <option value="">Selecciona un superhéroe</option>
+            <option value="Superman">Superman</option>
+            <option value="Spider-Man">Spider-Man</option>
+            <option value="Wonder Woman">Wonder Woman</option>
+            <option value="Iron Man">Iron Man</option>
+            <option value="Black Panther">Black Panther</option>
+        </select>
+        <p>Poder: <span id="poder"></span></p>
+</body>
+<script>
+    const superheroes = {
+            "Superman": "Súper fuerza, vuelo, visión de rayos X",
+            "Spider-Man": "Agilidad sobrehumana, sentido arácnido, telarañas",
+            "Wonder Woman": "Fuerza sobrehumana, vuelo, lazo de la verdad",
+            "Iron Man": "Armadura de alta tecnología, inteligencia superior",
+            "Black Panther": "Fuerza y agilidad mejoradas, traje de vibranium"
+        };
+
+        const selectElement = document.getElementById("superheroes");
+        const poderElement = document.getElementById("poder");
+
+        selectElement.addEventListener("change", function() {
+            const selectedHero = this.value;
+            if (selectedHero in superheroes) {
+                poderElement.textContent = superheroes[selectedHero];
+            } else {
+                poderElement.textContent = "";
+            }
+        });
+</script>
+</html>

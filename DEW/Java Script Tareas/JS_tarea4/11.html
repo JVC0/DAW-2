@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>\
+    <style>
+        #supermanImage {
+            position: relative; 
+            transition: transform 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1> Crea una clase Superman con un método volar(). Usa el DOM para hacer que una imagen de 
+        Superman se desplace hacia arriba cuando se invoque el método volar()..</h1>
+        <img id="supermanImage" src="https://kids.kiddle.co/images/3/35/Supermanflying.png" alt="Superman" />
+    <button id="flyButton">¡Volar!</button>
+</body>
+<script>
+    class Superman {
+    constructor(imageId) {
+        this.image = document.getElementById(imageId);
+        this.position = 0;
+    }
+
+    volar() {
+        this.position -= 10; 
+        this.image.style.transform = `translateY(${this.position}px)`; 
+    }
+}
+
+
+const superman = new Superman('supermanImage');
+
+
+document.getElementById('flyButton').addEventListener('click', () => {
+    superman.volar();
+});
+</script>
+</html>

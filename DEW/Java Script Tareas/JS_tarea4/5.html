@@ -9,9 +9,14 @@
 <h1>Crea dos botones: "Lado Oscuro" y "Lado Luminoso". Al hacer clic en uno de ellos, cambia el color
     de fondo de la página según el bando elegido: negro para el lado oscuro y blanco para el lado 
    luminoso.</h1>
+   <button id="lado-oscuro" onclick="changecolor('black')">Lado Oscuro</button>
+   <button id="lado-luminoso" onclick="changecolor('white')">Lado Luminoso</button>
 </body>
 <script>
-
+    const body = document.querySelector("body");
+    function changecolor(color) {
+        body.style.backgroundColor = color;
+    }
 
 </script>
 </html>

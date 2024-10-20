@@ -8,9 +8,47 @@
 <body>
 <h1> Crea una clase Ejercito con atributos como nombre, numeroSoldados, y fuerza. 
     Instancia cinco ejércitos y simula una batalla comparando la fuerza de cada ejército.</h1>
+    <div id="resultado"></div>
 </body>
 <script>
+class Ejercito {
+    constructor(nombre, numeroSoldados, fuerza) {
+        this.nombre = nombre;
+        this.numeroSoldados = numeroSoldados;
+        this.fuerza = fuerza;
+    }
 
+    compararFuerza(otroEjercito) {
+        if (this.fuerza > otroEjercito.fuerza) {
+            return `${this.nombre} es más fuerte que ${otroEjercito.nombre}`;
+        } else if (this.fuerza < otroEjercito.fuerza) {
+            return `${otroEjercito.nombre} es más fuerte que ${this.nombre}`;
+        } else {
+            return `${this.nombre} y ${otroEjercito.nombre} tienen la misma fuerza`;
+        }
+    }
+}
+
+
+const ejercito1 = new Ejercito("Ejército Rojo", 1000, 80);
+const ejercito2 = new Ejercito("Ejército Azul", 1200, 75);
+const ejercito3 = new Ejercito("Ejército Verde", 800, 90);
+const ejercito4 = new Ejercito("Ejército Amarillo", 1500, 70);
+const ejercito5 = new Ejercito("Ejército Negro", 1100, 85);
+
+const ejercitos = [ejercito1, ejercito2, ejercito3, ejercito4, ejercito5];
+
+
+let resultados = "";
+for (let i = 0; i < ejercitos.length; i++) {
+    for (let j = i + 1; j < ejercitos.length; j++) {
+        resultados += ejercitos[i].compararFuerza(ejercitos[j]) + "<br>";
+    }
+}
+
+// Mostrar resultados
+document.getElementById("resultado").innerHTML = resultados;
+</script>
 
 </script>
 </html>
