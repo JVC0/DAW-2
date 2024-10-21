@@ -164,7 +164,7 @@
                 <div>
                     <p>Texto</p>
                 </div>
-                <div></div> <!-- Div vacío -->
+                <div style="height: 10px;"></div> <!-- Div vacío -->
             </div>
         </div>
         <br><hr style="border: 1px solid red"><br>
@@ -196,25 +196,26 @@
 			
 
 				// Solución del Ejercicio 1
-				$("ul li:first").css("background-color", "azul")
+				$("ul li:first").css("background-color", "blue");
 				// Solución del Ejercicio 2
-				
+				$("#e2 li:last").text("Soy el último");
 				// Solución del Ejercicio 3
-				
+				$("#e3 li:even").css("background-color", "gray");
 				// Solución del Ejercicio 4
-				
+				$("#e4 li:odd").hide()
 				// Solución del Ejercicio 5
-				
+				$("#e5 li:eq(2)").text("Soy el tercero");
 				// Solución del Ejercicio 6
-				
+				$("input:gt(1)").attr("disabled","true")
 				// Solución del Ejercicio 7
-				
+                $("#e7 :contains('especial')").css("color", "red")
 				// Solución del Ejercicio 8
-				
+				$("#e8 :parent").css("border","2px solid black")
 				// Solución del Ejercicio 8
-				
+				$("#e9 :empty").css("background-color", "yellow");
 				// Solución del Ejercicio 10
-			
+                $("#e10 :hidden").show()
+
 			
             });
         </script>
