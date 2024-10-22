@@ -21,24 +21,30 @@
   const app = initializeApp(firebaseConfig);
   
 
-
   const submit = document.getElementById('submit');
-  submit.addEventListener('click',function(event){
-    event.preventDefault()
+  submit.addEventListener('click', function(event) {
+    event.preventDefault();
     const auth = getAuth();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    alert('creado cuenta')
-    window.location.href ="index.html"
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    alert('error')
+  
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        
+        // Store user info in localStorage
+        localStorage.setItem('user', JSON.stringify(user));
+        
+        // Set an initial amount of money (you can adjust this as needed)
+        localStorage.setItem('userMoney', '1000');
+        
+        alert('Login successful');
+        window.location.href = "index.html";
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert('Login error: ' + errorMessage);
+      });
   });
-
-  })

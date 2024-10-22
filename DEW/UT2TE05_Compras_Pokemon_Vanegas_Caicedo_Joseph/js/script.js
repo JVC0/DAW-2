@@ -1,6 +1,6 @@
 import Pokemon from './Pokemon.js';
-
-const button = document.querySelector("button");
+import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+const button = document.getElementById("button");
 var pokemons = [];
 var desirelist =[]
 var selectedPokemons = [];
@@ -62,6 +62,17 @@ confirmButton.addEventListener('click', () => {
     // Clear selection
     selectedPokemons = [];
   }
+});
+const showButton = document.getElementById('btn_lista_deseo');
+
+showButton.addEventListener('click', () => {
+  const showdeslire = []
+  
+  for (let vpokemon of desirelist) {
+    showdeslire.push(vpokemon.name)
+    
+  }
+  alert(showdeslire);
 });
 
 
@@ -237,8 +248,75 @@ function getColorByType(type) {
     return colors[type] || colors.default;
 }
 
-// Función para verificar si el tipo es vacío
 function NoEmptyTypes(tipo) {
     return tipo === "" ? "0" : "1";
 }
 
+function checkLoginStatus() {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const userInfo = document.getElementById('userInfo');
+  const userName = document.getElementById('userName');
+  const userMoney = document.getElementById('userMoney');
+  const logoutButton = document.getElementById('logoutButton');
+
+  if (user) {
+    userInfo.style.display = 'block';
+    logoutButton.style.display = 'block';
+    userName.textContent = `Welcome, ${user.email}!`;
+    userMoney.textContent = `Balance: $${localStorage.getItem('userMoney')}`;
+  } else {
+    userInfo.style.display = 'none';
+    logoutButton.style.display = 'none';
+  }
+}
+
+function setupLogout() {
+  const logoutButton = document.getElementById('logoutButton');
+  logoutButton.addEventListener('click', () => {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      localStorage.removeItem('user');
+      localStorage.removeItem('userMoney');
+      window.location.href = 'login.html';
+    }).catch((error) => {
+      console.error('Logout error:', error);
+    });
+  });
+}
+
+// Call these functions when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  checkLoginStatus();
+  setupLogout();
+});
+
+// Modify your existing confirmButton event listener
+confirmButton.addEventListener('click', () => {
+  if (selectedPokemons.length === 0) {
+    alert("No Pokémon selected. Please select at least one Pokémon.");
+    return;
+  }
+
+  const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your desire list?`;
+  
+  if (confirm(confirmMessage)) {
+    let totalCost = 0;
+    selectedPokemons.forEach(pokemonId => {
+      const pokemon = pokemons.find(p => p .id.toString() === pokemonId);
+      if (pokemon && !desirelist.includes(pokemon)) {
+        desirelist.push(pokemon);
+        totalCost += parseFloat(pokemon.pkm_price);
+      }
+      // Remove 'selected' class for all selected Pokémon
+      const card = document.getElementById(pokemonId);
+      if (card) {
+        card.classList.remove('selected');
+      }
+    });
+
+    // Update user's money
+    let currentMoney = parseFloat(localStorage.getItem('userMoney'));
+    currentMoney -= totalCost;
+    localStorage.setItem('userMoney', currentMoney.toString());
+  }
+});
