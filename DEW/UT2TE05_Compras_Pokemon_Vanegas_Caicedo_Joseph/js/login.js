@@ -19,7 +19,7 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  
+  const auth = getAuth(app); 
 
   const submit = document.getElementById('submit');
   submit.addEventListener('click', function(event) {
@@ -48,3 +48,5 @@
         alert('Login error: ' + errorMessage);
       });
   });
+
+  

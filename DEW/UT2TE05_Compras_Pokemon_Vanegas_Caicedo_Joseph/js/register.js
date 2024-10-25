@@ -1,7 +1,7 @@
 
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword,signOut  } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,7 +20,7 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  
+  const auth = getAuth(app); 
 
 
   const submit = document.getElementById('submit');
@@ -44,3 +44,4 @@ createUserWithEmailAndPassword(auth, email, password)
   });
 
   })
+  

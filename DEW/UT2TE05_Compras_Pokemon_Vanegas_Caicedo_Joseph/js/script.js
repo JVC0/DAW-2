@@ -1,12 +1,14 @@
 import Pokemon from './Pokemon.js';
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-const button = document.getElementById("button");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+
+
 var pokemons = [];
 var desirelist =[]
 var selectedPokemons = [];
 
 
-button.addEventListener("click", (e) => {
+document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll("#filtrotipo").forEach((e) => {
     e.style.visibility = "visible";
   });
@@ -25,17 +27,24 @@ button.addEventListener("click", (e) => {
   document.querySelectorAll("#btn_alista_deseo").forEach((e) => {
     e.style.visibility = "visible";
   });
+  document.querySelectorAll("#loginButton").forEach((e) => {
+    e.style.visibility = "visible";
+  });
 
   let Lista_Pokemon = document.querySelector(".Lista_Pokemon");
   Lista_Pokemon.style.visibility = "visible";
 
-  document.querySelector('#button').style.visibility = 'hidden';
 
   document.querySelector('#pokedex').style.visibility = 'visible';
 
   startPokedex();
 });
 
+
+const loginButton = document.getElementById('loginButton');
+loginButton.addEventListener('click', () => {
+    window.location.href = 'login.html';
+});
 const confirmButton = document.getElementById('btn_alista_deseo');
 
 confirmButton.addEventListener('click', () => {
@@ -262,25 +271,37 @@ function checkLoginStatus() {
   if (user) {
     userInfo.style.display = 'block';
     logoutButton.style.display = 'block';
+    loginButton.style.display = 'none';
     userName.textContent = `Welcome, ${user.email}!`;
     userMoney.textContent = `Balance: $${localStorage.getItem('userMoney')}`;
   } else {
     userInfo.style.display = 'none';
     logoutButton.style.display = 'none';
+    loginButton.style.display = 'block';
   }
 }
-
+const firebaseConfig = {
+  apiKey: "AIzaSyABHv6OInLQBhOyYZ-z8To7crHTeVmjABE",
+  authDomain: "pokemon-4d764.firebaseapp.com",
+  projectId: "pokemon-4d764",
+  storageBucket: "pokemon-4d764.appspot.com",
+  messagingSenderId: "30698383276",
+  appId: "1:30698383276:web:ecf690eae6c11f0484bc09",
+  measurementId: "G-VG7CLGD0B6"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 function setupLogout() {
   const logoutButton = document.getElementById('logoutButton');
   logoutButton.addEventListener('click', () => {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      localStorage.removeItem('user');
-      localStorage.removeItem('userMoney');
-      window.location.href = 'login.html';
-    }).catch((error) => {
-      console.error('Logout error:', error);
-    });
+      // Use the auth instance that was initialized earlier
+      signOut(auth).then(() => {
+          // Sign-out successful.
+          localStorage.removeItem('user');
+          window.location.href = 'index.html';
+      }).catch((error) => {
+          console.error('Logout error:', error);
+      });
   });
 }
 
@@ -320,3 +341,4 @@ confirmButton.addEventListener('click', () => {
     localStorage.setItem('userMoney', currentMoney.toString());
   }
 });
+
