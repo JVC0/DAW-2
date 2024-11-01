@@ -1,0 +1,20 @@
+
+
+.d-flex{
+    margin-right: 100px;
+}
+.title{
+    display: flex;
+    align-items: center;
+    background-color: #F8F9FA;
+    height: 50px;
+    align-items: center;
+}
+.titletext{
+    color: #6D767E;
+    margin-left: 60px;
+}
+
+.navbar-toggler-icon{
+color: #6D767E;
+}

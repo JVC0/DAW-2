@@ -1,39 +1,32 @@
 import Pokemon from './Pokemon.js';
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-
+import { getAuth,onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import {  getFirestore, doc, getDoc, updateDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 var pokemons = [];
-var desirelist =[]
+var desirelist = [];
 var selectedPokemons = [];
+var carrito=[];
+let totalCost = 0;
 
+
+function setVisibility(selector, visibility) {
+  document.querySelectorAll(selector).forEach((e) => {
+    e.style.visibility = visibility;
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll("#filtrotipo").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-
-  document.querySelectorAll("#filtropeso").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-
-  document.querySelectorAll("#filtropoder").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-
-  document.querySelectorAll("#btn_lista_deseo").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-  document.querySelectorAll("#btn_alista_deseo").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-  document.querySelectorAll("#loginButton").forEach((e) => {
-    e.style.visibility = "visible";
-  });
-
+  setVisibility("#filtrotipo", "visible");
+  setVisibility("#filtropeso", "visible");
+  setVisibility("#filtropoder", "visible");
+  setVisibility("#btn_lista_deseo", "visible");
+  setVisibility("#btn_alista_deseo", "visible");
+  setVisibility("#loginButton", "visible");
+  setVisibility("#btn_anadir_carrito", "visible");
+  setVisibility("#btn_ver_compra", "visible");
   let Lista_Pokemon = document.querySelector(".Lista_Pokemon");
   Lista_Pokemon.style.visibility = "visible";
-
 
   document.querySelector('#pokedex').style.visibility = 'visible';
 
@@ -41,48 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 const loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', () => {
     window.location.href = 'login.html';
 });
-const confirmButton = document.getElementById('btn_alista_deseo');
 
-confirmButton.addEventListener('click', () => {
-  if (selectedPokemons.length === 0) {
-    alert("No Pokémon selected. Please select at least one Pokémon.");
-    return;
-  }
-
-  const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your desire list?`;
-  
-  if (confirm(confirmMessage)) {
-    selectedPokemons.forEach(pokemonId => {
-      const pokemon = pokemons.find(p => p.id.toString() === pokemonId);
-      if (pokemon && !desirelist.includes(pokemon)) {
-        desirelist.push(pokemon);
-      }
-      // Remove 'selected' class for all selected Pokémon
-      const card = document.getElementById(pokemonId);
-      if (card) {
-        card.classList.remove('selected');
-      }
-    });
-    console.log(desirelist);
-    // Clear selection
-    selectedPokemons = [];
-  }
-});
-const showButton = document.getElementById('btn_lista_deseo');
-
-showButton.addEventListener('click', () => {
-  const showdeslire = []
-  
-  for (let vpokemon of desirelist) {
-    showdeslire.push(vpokemon.name)
-    
-  }
-  alert(showdeslire);
-});
 
 
 const startPokedex = async () => {
@@ -103,8 +60,6 @@ const startPokedex = async () => {
   const filterInputP = document.getElementById('filtropoder');
   const filterInput = document.getElementById('filtrotipo');
   const filterInputPeso = document.getElementById('filtropeso')
-  const pokedex = document.getElementById("pokedex");
-  const pokemonCards = pokedex.children;
   
 
   filterInputP.addEventListener('input', filterPokemons);
@@ -112,44 +67,63 @@ const startPokedex = async () => {
   filterInputPeso.addEventListener('input', filterPokemons);
 };
 
-// Add the filterPokemons function
-function filterPokemons(event) {
-  const filterValue = event.target.value.toLowerCase();
+// filtrar pokemons
+function filterPokemons() {
+  const poderFilterValue = document.getElementById('filtropoder').value.toLowerCase();
+  const tipoFilterValue = document.getElementById('filtrotipo').value.toLowerCase();
+  const pesoFilterValue = document.getElementById('filtropeso').value.toLowerCase();
   const pokemonCards = document.getElementById("pokedex").children;
 
   for (let i = 0; i < pokemonCards.length; i++) {
     const pokemonCard = pokemonCards[i];
-    let showPokemon = false;
+    let showPokemon = true; // Asumimos que se debe mostrar el Pokémon
 
-    // Depending on the filter type, check the corresponding element
-    if (event.target.id === 'filtropoder') {
+    // Filtrado por poder
+    if (poderFilterValue) {
       const pokemonPoder = pokemonCard.querySelectorAll('.attack');
+      let poderMatch = false;
       for (let j = 0; j < pokemonPoder.length; j++) {
-        const pokemonPoderText = pokemonPoder[j].textContent;
-        if (pokemonPoderText.includes(filterValue)) {
-          showPokemon = true;
+        const pokemonPoderText = pokemonPoder[j].textContent.toLowerCase();
+        if (pokemonPoderText.includes(poderFilterValue)) {
+          poderMatch = true;
           break;
         }
       }
-    } else if (event.target.id === 'filtrotipo') {
-      const pokemonTypes = pokemonCard.querySelectorAll('.type');
-      for (let j = 0; j < pokemonTypes.length; j++) {
-        const pokemonType = pokemonTypes[j].textContent.toLowerCase();
-        if (pokemonType.includes(filterValue)) {
-          showPokemon = true;
-          break;
-        }
-      }
-    } else if (event.target.id === 'filtropeso') {
-      const pokemonPeso = pokemonCard.querySelectorAll('.weight');
-      for (let j = 0; j < pokemonPeso.length; j++) {
-        const pokemonPesoText = pokemonPeso[j].textContent;
-        if (pokemonPesoText.includes(filterValue)) {
-          showPokemon = true;
-          break;
-        }
+      if (!poderMatch) {
+        showPokemon = false;
       }
     }
+
+    // Filtrado por tipo
+    if (tipoFilterValue) {
+      const pokemonTypes = pokemonCard.querySelectorAll('.type');
+      let tipoMatch = false;
+      for (let j = 0; j < pokemonTypes.length; j++) {
+        const pokemonType = pokemonTypes[j].textContent.toLowerCase();
+        if (pokemonType.includes(tipoFilterValue)) {
+          tipoMatch = true;
+          break;
+        }
+      }
+      if (!tipoMatch) {
+        showPokemon = false; 
+      }
+    }
+
+   // Filtrado por peso
+if (pesoFilterValue) {
+  const pokemonPeso = pokemonCard.querySelector('.weight').textContent.toLowerCase();
+  const weightValue = parseFloat(pesoFilterValue); 
+  const pokemonWeight = parseFloat(pokemonPeso.match(/weight:\s*(\d+\.?\d*)/)[1]); 
+
+
+  if (pokemonWeight !== weightValue) {
+    showPokemon = false; 
+  }
+} else {
+
+  showPokemon = true; 
+}
 
     if (showPokemon) {
       pokemonCard.style.display = 'block';
@@ -206,8 +180,8 @@ const showPokedex = async (pokemons) => {
         </div>
         <div class="phy">
           <div class="size">
-             height: ${pokemons[i].pkm_weight}
-            <div class="weight">weight: ${pokemons[i].pkm_height}</div>
+             height: ${pokemons[i].pkm_height}
+            <div class="weight">weight: ${pokemons[i].pkm_weight}</div>
           </div>
         </div>
       </div>
@@ -216,21 +190,22 @@ const showPokedex = async (pokemons) => {
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => togglePokemonSelection(card)); });
 };
+
+//funcion para selecionar pokemon
 function togglePokemonSelection(card) {
   const pokemonId = card.id;
   const index = selectedPokemons.indexOf(pokemonId);
 
   if (index === -1) {
-    // Pokemon is not in the list, add it
+   
     selectedPokemons.push(pokemonId);
     card.classList.add('selected');
   } else {
-    // Pokemon is in the list, remove it
+   
     selectedPokemons.splice(index, 1);
     card.classList.remove('selected');
   }
 
-  console.log('Selected Pokemons:', selectedPokemons);
 }
 // Función para obtener el color por tipo
 function getColorByType(type) {
@@ -261,25 +236,106 @@ function NoEmptyTypes(tipo) {
     return tipo === "" ? "0" : "1";
 }
 
-function checkLoginStatus() {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const userInfo = document.getElementById('userInfo');
-  const userName = document.getElementById('userName');
-  const userMoney = document.getElementById('userMoney');
-  const logoutButton = document.getElementById('logoutButton');
 
-  if (user) {
-    userInfo.style.display = 'block';
-    logoutButton.style.display = 'block';
-    loginButton.style.display = 'none';
-    userName.textContent = `Welcome, ${user.email}!`;
-    userMoney.textContent = `Balance: $${localStorage.getItem('userMoney')}`;
-  } else {
-    userInfo.style.display = 'none';
-    logoutButton.style.display = 'none';
-    loginButton.style.display = 'block';
-  }
-}
+//Añadir a la lista de deso
+const confirmButton = document.getElementById('btn_alista_deseo');
+
+confirmButton.addEventListener('click', async () => {
+    const userId = auth.currentUser  ? auth.currentUser .uid : null; 
+    if (!userId) {
+        alert("Please log in to add Pokémon to your desire list.");
+        return; 
+    }
+
+    if (selectedPokemons.length === 0) {
+        alert("No Pokémon selected. Please select at least one Pokémon.");
+        return;
+    }
+
+    const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your desire list?`;
+    
+    if (confirm(confirmMessage)) {
+        const userDoc = await getDoc(doc(db, 'users', userId)); 
+
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const existingWishlist = userData.desirelist || [];
+
+            selectedPokemons.forEach(pokemonId => {
+                const pokemon = pokemons.find(p => p.id.toString() === pokemonId);
+                if (pokemon && !existingWishlist.some(p => p.id === pokemon.id)) {
+                    existingWishlist.push({
+                        id: pokemon.id,
+                        name: pokemon.name,
+                        attack: pokemon.pkm_attack,
+                        weight: pokemon.pkm_weight,
+                        price: pokemon.pkm_price,
+                       
+                    });
+                }
+               
+                const card = document.getElementById(pokemonId);
+                if (card) {
+                    card.classList.remove('selected');
+                }
+            });
+
+            
+            await updateDoc(doc(db, 'users', userId), {
+                desirelist: existingWishlist
+            });
+
+            selectedPokemons = []; 
+            alert("Pokémon added to your wishlist successfully!");
+        } else {
+            console.error("No se encontró el documento del usuario.");
+        }
+    }
+});
+const anadir = document.getElementById('btn_anadir_carrito');
+
+// Add to cart
+anadir.addEventListener('click', () => {
+    const userId = auth.currentUser  ? auth.currentUser .uid : null;
+    if (!userId) {
+        alert("Please log in to add Pokémon to your cart.");
+        return;
+    }
+
+    if (selectedPokemons.length === 0) {
+        alert("No Pokémon selected. Please select at least one Pokémon.");
+        return;
+    }
+
+    const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your cart?`;
+    
+    if (confirm(confirmMessage)) {
+        selectedPokemons.forEach(pokemonId => {
+            const pokemon = pokemons.find(p => p.id.toString() === pokemonId);
+            if (pokemon && !carrito.includes(pokemon)) {
+                carrito.push(pokemon);
+                if (!pokemon.pkm_price) {
+                    pokemon.pkm_price = ((5 + pokemon.pkm_attack * (20 - 5)) / 100).toFixed(2);
+                }
+                totalCost += parseFloat(pokemon.pkm_price);
+            }
+            const card = document.getElementById(pokemonId);
+            if (card) {
+                card.classList.remove('selected');
+            }
+        });
+        selectedPokemons = [];
+    }
+});
+
+
+const refreshButton = document.getElementById('refreshButton');
+
+refreshButton.addEventListener('click', () => {
+  location.reload(); 
+});
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyABHv6OInLQBhOyYZ-z8To7crHTeVmjABE",
   authDomain: "pokemon-4d764.firebaseapp.com",
@@ -291,54 +347,253 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-function setupLogout() {
-  const logoutButton = document.getElementById('logoutButton');
-  logoutButton.addEventListener('click', () => {
-      // Use the auth instance that was initialized earlier
-      signOut(auth).then(() => {
-          // Sign-out successful.
-          localStorage.removeItem('user');
-          window.location.href = 'index.html';
-      }).catch((error) => {
-          console.error('Logout error:', error);
-      });
-  });
-}
+const db = getFirestore(app);
 
-// Call these functions when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-  checkLoginStatus();
-  setupLogout();
+onAuthStateChanged(auth, async (user) => {
+  const userInfo = document.getElementById('userInfo');
+  const userName = document.getElementById('userName');
+  const userMoney = document.getElementById('userMoney');
+  const logoutButton = document.getElementById('logoutButton');
+  const loginButton = document.getElementById('loginButton');
+
+  if (user) {
+  
+    const userId = user.uid;
+    userName.textContent = `Welcome, ${user.email}!`;
+
+   
+    const userDoc = await getDoc(doc(db, 'users', userId));
+    if (userDoc.exists()) {
+      const userData = userDoc.data();
+      const balance = userData.balance; // Get the balance
+      userMoney.textContent = `Your Credit: ${parseFloat(balance).toFixed(2)}€`;
+    }
+
+
+    userInfo.style.display = 'block';
+    logoutButton.style.display = 'block';
+    loginButton.style.display = 'none';
+  } else {
+
+    userInfo.style.display = 'none';
+    logoutButton.style.display = 'none';
+    loginButton.style.display = 'block';
+  }
 });
 
-// Modify your existing confirmButton event listener
-confirmButton.addEventListener('click', () => {
-  if (selectedPokemons.length === 0) {
-    alert("No Pokémon selected. Please select at least one Pokémon.");
+const showButton = document.getElementById('btn_lista_deseo');
+
+showButton.addEventListener('click', async () => {
+  const userId = auth.currentUser  ? auth.currentUser .uid : null; 
+  if (!userId) {
+    alert("Please log in to view your desire list.");
     return;
   }
 
-  const confirmMessage = `Are you sure you want to add ${selectedPokemons.length} Pokémon to your desire list?`;
-  
-  if (confirm(confirmMessage)) {
-    let totalCost = 0;
-    selectedPokemons.forEach(pokemonId => {
-      const pokemon = pokemons.find(p => p .id.toString() === pokemonId);
-      if (pokemon && !desirelist.includes(pokemon)) {
-        desirelist.push(pokemon);
-        totalCost += parseFloat(pokemon.pkm_price);
-      }
-      // Remove 'selected' class for all selected Pokémon
-      const card = document.getElementById(pokemonId);
-      if (card) {
-        card.classList.remove('selected');
-      }
-    });
+  document.getElementById("pokedex").style.display = 'none';
 
-    // Update user's money
-    let currentMoney = parseFloat(localStorage.getItem('userMoney'));
-    currentMoney -= totalCost;
-    localStorage.setItem('userMoney', currentMoney.toString());
+  const userDoc = await getDoc(doc(db, 'users', userId)); 
+
+  if (userDoc.exists()) {
+    const userData = userDoc.data();
+    const desireList = userData.desirelist || [];
+
+    const desireListContainer = document.getElementById("desireListContainer");
+    desireListContainer.innerHTML = "";
+    desireListContainer.style.display = "grid"; 
+
+    
+    for (const pokemon of desireList) {
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`);
+        const pokemonData = await response.json();
+
+       
+        pokemonData.pkm_price = ((5 + pokemonData.stats[1].base_stat * (20 - 5)) / 100).toFixed(2);
+
+       
+        const tipo1 = pokemonData.types[0].type.name;
+        const tipo2 = pokemonData.types[1] ? pokemonData.types[1].type.name : null;
+
+        const tipo1Color = getColorByType(tipo1);
+        const tipo2Color = tipo2 ? getColorByType(tipo2) : "";
+
+        const singleTypeClass = !tipo2 ? "single-type" : "dual-type"; 
+
+        const pokemonCard = document.createElement("div");
+        pokemonCard.classList.add("pokemon-card");
+        pokemonCard.innerHTML = `
+        <div class="card2" id="${pokemon.id}">
+        <div class="idname">
+          ${pokemonData.id}. ${pokemonData.name}
+        </div>
+        <div class="type">${pokemonData.pkm_price}€</div>
+        <br>
+        <div class="attack">Attack: ${pokemonData.stats[1].base_stat}</div>
+        <br>
+        <img class="front" src="${pokemonData.sprites.front_default}" alt="Front sprite"> <!-- Front sprite -->
+        <img class="front" src="${pokemonData.sprites.front_shiny}" alt="Shiny Front sprite"> <!-- Shiny Front sprite -->
+        <img class="back" src="${pokemonData.sprites.back_default}" alt="Back sprite"> <!-- Back sprite -->
+        <img class="shiny-back" src="${pokemonData.sprites.back_shiny}" alt="Shiny Back sprite"> <!-- Shiny Back sprite -->
+        <br>
+        <div class="type ${singleTypeClass}" style="background-color: ${tipo1Color};">
+          ${tipo1}
+        </div>
+        <div class="type ${singleTypeClass}" style="background-color: ${tipo2Color}; opacity: ${tipo2 ? 1 : 0};">
+          ${tipo2 || ''}
+        </div>
+        <div class="phy">
+          <div class="size">
+            height: ${pokemonData.height}
+            <div class="weight">weight: ${pokemonData.weight}</div>
+          </div>
+        </div>
+      </div>
+        `;
+        desireListContainer.appendChild(pokemonCard);
+      } catch (error) {
+        console.error("Error fetching Pokémon data:", error);
+      }
+    }
+  } else {
+    console.error("User  document not found.");
   }
 });
+// Logout function
+logoutButton.addEventListener('click', () => {
+  signOut(auth).then(() => {
+   
+    alert('You have logged out.');
+  }).catch((error) => {
+    console.error('Logout error:', error);
+  });
+});
+const carritoButton = document.getElementById('btn_ver_compra');
+carritoButton.addEventListener('click', () => {
 
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+
+      document.getElementById("pokedex").style.display = 'none'; 
+      showCart();
+    } else {
+     
+      alert("Please log in to view your cart.");
+      window.location.href = 'login.html'; 
+    }
+  });
+});
+
+function showCart() {
+  const cartContainer = document.getElementById("cart");
+  
+  if (!cartContainer) {
+    console.error("Cart container not found!");
+    return;
+  }
+
+  cartContainer.innerHTML = ""; 
+
+  // Show Pokémon in the cart
+  carrito.forEach(pokemon => {
+    
+    let tipo1 = "";
+    let tipo2 = "";
+
+    for (let aux = 0; aux < pokemon.pkm_type.length; aux++) {
+        if (aux === 0) {
+            tipo1 = pokemon.pkm_type[aux].type.name;
+        } else if (aux === 1) {
+            tipo2 = pokemon.pkm_type[aux].type.name;
+        }
+    }
+
+    const tipo1Color = getColorByType(tipo1);
+    const tipo2Color = tipo2 ? getColorByType(tipo2) : "";
+    pokemon.pkm_price = ((5 + pokemon.pkm_attack * (20 - 5)) / 100).toFixed(2);
+    const singleTypeClass = !tipo2 ? "single-type" : "dual-type"; 
+
+    cartContainer.innerHTML += `
+      <div class="card2" id="${pokemon.id}">
+        <div class="idname">
+          ${pokemon.id}. ${pokemon.name} 
+        </div>
+        <div class="type">${pokemon.pkm_price}€</div>
+        <br>
+        <div class="attack">Attack ${pokemon.pkm_attack}</div>
+        <br>
+        <img src="${pokemon.pkm_back}">
+        <img class="front" src="${pokemon.pkm_front}">
+        <br>
+        <div class="type ${singleTypeClass}" style="background-color: ${tipo1Color};">
+          ${tipo1}
+        </div>
+        <div class="type ${singleTypeClass}" style="background-color: ${tipo2Color}; opacity: ${tipo2 ? 1 : 0};">
+          ${tipo2 || ''}
+        </div>
+        <div class="phy">
+          <div class="size">
+            height: ${pokemon.pkm_weight}
+            <div class="weight">weight: ${pokemon.pkm_height}</div>
+          </div>
+        </div>
+      </div>
+    `;
+});
+
+  // Show total price
+  const totalContainer = document.createElement('div');
+  totalContainer.innerHTML = `<h3>Total: ${totalCost.toFixed(2)}€</h3>`;
+  cartContainer.appendChild(totalContainer);
+
+  // Add buy button
+  const buyButton = document.createElement('button');
+  buyButton.textContent = "Comprar";
+  buyButton.addEventListener('click', () => {
+    alert("Compra realizada con éxito!");
+    
+  });
+  cartContainer.appendChild(buyButton);
+
+  cartContainer.style.display = 'block';
+
+
+  buyButton.addEventListener('click', async () => {
+    const userId = auth.currentUser .uid; 
+    const userDoc = await getDoc(doc(db, 'users', userId)); 
+
+    if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const balance = userData.balance;
+
+        if (balance >= totalCost) {
+          
+            const newBalance = balance - totalCost;
+
+           
+            await updateDoc(doc(db, 'users', userId), {
+                balance: newBalance,
+                purchasedPokemons: (userData.purchasedPokemons || []).concat(carrito.map(pokemon => ({
+                    id: pokemon.id,
+                    name: pokemon.name,
+                    price: pokemon.pkm_price,
+                    attack: pokemon.pkm_attack,
+                    weight: pokemon.pkm_weight,
+                    purchaseDate: new Date()
+                })))
+            });
+
+            alert("Compra realizada con éxito!");
+           
+            carrito = []; 
+            totalCost = 0;
+            showCart();
+            location.reload(); 
+        } else {
+            alert("No tienes suficiente crédito para realizar esta compra.");
+        }
+    } else {
+        console.error("No se encontró el documento del usuario.");
+    }
+});
+}
