@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pokemon Shop</title>
+    <link rel="stylesheet"  type="text/css" href="./css/style.css">
+    <body>
+        <header id="main-header">
+            <div class="header">
+                <img src="assets/images/logo.png" class="logo">
+            </div>
+        </header>
+       
+        <div id="userInfo" style="display: none;">
+            <span id="userName"></span>
+            <span id="userMoney"></span>
+          </div>
+          <button id="logoutButton">Logout</button>
+          <button id="loginButton" class="button button-54">Login</button>
+        <div class="input">
+            <input type="text" id="filtrotipo" class="input"
+                placeholder="Buscar por tipo...">
+            <input type="text" id="filtropeso" class="input"
+                placeholder="Buscar por peso...">
+            <input type="text" id="filtropoder" class="input"
+                placeholder="Buscar por Poder Total...">
+        </div>
+        <div class="btn">
+            <input type="button" id="btn_alista_deseo" class="btnMenu"
+                value="Añadir a lista de deseos" />
+            <input type="button" id="btn_lista_deseo" class="btnMenu"
+                value="Ver lista de deseos" />
+            <input type="button" id="btn_anadir_carrito" class="btnMenu"
+                value="Añadir a carrito" />
+            <input type="button" id="btn_ver_compra" class="btnMenu"
+                value="Ver carrito" />
+            <button id="btn_ver_comprados">View Purchased Pokémon</button>
+                
+        </div>
+        
+        <button id="refreshButton">Refresh</button>
+        
+		<div class="Lista_Pokemon">
+            <h2 class="cargandoDatos">Cargando datos ...</h2>
+            <div id="cart"></div>
+            <div id="purchasedListContainer" ></div>
+            <div id="desireListContainer"></div>
+			<div id="pokedex"></div>
+				</li>
+			</ul>
+		<div>
+            <script type="module" src="js/script.js"></script>
+    </body>
+</html>
