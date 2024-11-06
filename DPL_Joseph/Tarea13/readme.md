@@ -18,3 +18,14 @@ LAMP es un conjunto de tecnologías que sirven como motor para numerosas aplicac
 ![alt text](image.png)
 
 ![alt text](image-1.png)
+
+# Cambiando el puerto
+![alt text](image-2.png)
+### Abro el documento de configuracion de puertos de apache y cambio el puerto de 80 a 82
+![alt text](image-3.png)
+![alt text](image-4.png)
+###  Me voy a otra camperta de configuracion de apache y cambio el puerto otra vez de 80 a 82
+![alt text](image-5.png)
+
+### en esta imagen puedes ver que el puerto ya esta cambiado.
+![alt text](image-6.png)
