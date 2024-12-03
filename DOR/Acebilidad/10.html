@@ -1,0 +1,19 @@
+Ejercicio 10. Página dinámica sin accesibilidad
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Notificaciones</title>
+  <script>
+    function mostrarMensaje() {
+      document.getElementById('mensaje').innerText = '¡Nueva notificación!';
+      mensajeDiv.setAttribute('role', 'alert'); 
+      mensajeDiv.setAttribute('aria-live', 'assertive');
+    }
+  </script>
+</head>
+<body>
+  <h1>Página de Notificaciones</h1>
+  <button onclick="mostrarMensaje()">Mostrar Notificación</button>
+  <div id="mensaje" aria-live="polite"></div>
+</body>
+</html>
