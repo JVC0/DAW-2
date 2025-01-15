@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+  <div id="liveAlertPlaceholder" role="alert" aria-live="assertive" aria-atomic="true"></div>
+<button type="button" class="btn btn-primary" id="liveAlertBtn" aria-label="Show live alert">Show live alert</button>
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#" aria-label="Home">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page" aria-label="Library">Library</li>
+    </ol>
+  </nav>
+  <ul class="dropdown-menu" role="menu" aria-label="Dropdown menu">
+    <li><a class="dropdown-item" href="#" role="menuitem" aria-label="Action">Action</a></li>
+    <li><a class="dropdown-item" href="#" role="menuitem" aria-label="Another action">Another action</a></li>
+    <li><a class="dropdown-item" href="#" role="menuitem" aria-label="Something else here">Something else here</a></li>
+  </ul>
+</div>
+  <div class="card" style="width: 18rem;" role="region" aria-label="Card">
+    <img src="..." class="card-img-top" alt="..." role="img" aria-label="...">
+    <div class="card-body">
+      <h5 class="card-title" role="heading" aria-level="2">Card title</h5>
+      <p class="card-text" role="definition">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary" aria-label="Go somewhere" role="button">Go somewhere</a>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary position-relative" aria-label="Inbox" role="button">
+    Inbox
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" aria-label="99+ unread messages" role="status">
+      99+
+      <span class="visually-hidden">unread messages</span>
+    </span>
+  </button>
+</body>
+</html>
